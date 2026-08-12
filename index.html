@@ -243,4 +243,32 @@ button{
 <div class="bottom">
   <button class="selected" onclick="home()">🏠<br>Bosh sahifa</button>
   <button onclick="orders()">🧾<br>Buyurtma</button>
-  <button onclick="support()">💬<br>
+  <button onclick="support()">💬<br>                       
+    
+  </button>
+</div>
+
+<script>
+function topUp() {
+  alert("Balansni to‘ldirish bo‘limi tez orada ochiladi 💳");
+}
+
+function orders() {
+  alert("Buyurtmalar bo‘limi 📋");
+}
+
+function support() {
+  alert("Yordam bo‘limi 💬");
+}
+
+function home() {
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function game(name) {
+  alert(name + " tanlandi 🎮");
+}
+</script>
+
+</body>
+</html>
