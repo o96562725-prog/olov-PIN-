@@ -1,246 +1,304 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OLOV PIN</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OLOV PIN</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-    body {
-      background: #050b12;
-      color: white;
-      min-height: 100vh;
-    }
+body{
+  background:#050b12;
+  color:white;
+  min-height:100vh;
+  padding-bottom:80px;
+}
 
-    .header {
-      padding: 18px 20px;
-      font-size: 25px;
-      font-weight: bold;
-      text-align: center;
-      border-bottom: 1px solid #18222e;
-    }
+.header{
+  padding:20px;
+  text-align:center;
+  font-size:25px;
+  font-weight:bold;
+  border-bottom:1px solid #18222e;
+}
 
-    .brand {
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      color: #72ff18;
-    }
+.brand{
+  padding:20px;
+  text-align:center;
+  font-size:23px;
+  font-weight:bold;
+  color:#72ff18;
+}
 
-    .balance {
-      margin: 15px;
-      padding: 22px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, #101b2b, #092f3a);
-      border: 1px solid #263747;
-    }
+.balance{
+  margin:15px;
+  padding:22px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#111a26,#182b35);
+  border:1px solid #263747;
+  text-align:center;
+}
 
-    .balance small {
-      color: #9aa8b8;
-      font-size: 14px;
-      letter-spacing: 2px;
-    }
+.balance small{
+  color:#9aa8b8;
+  font-size:14px;
+  letter-spacing:2px;
+}
 
-    .money {
-      margin: 8px 0 20px;
-      font-size: 35px;
-      font-weight: bold;
-      color: #7cff19;
-    }
+.money{
+  margin:8px 0 20px;
+  font-size:35px;
+  font-weight:bold;
+  color:#7cff19;
+}
 
-    .buttons {
-      display: flex;
-      gap: 10px;
-    }
+.buttons{
+  display:flex;
+  gap:10px;
+}
 
-    button {
-      border: 0;
-      border-radius: 15px;
-      padding: 15px;
-      color: white;
-      background: #172231;
-      font-size: 15px;
-      font-weight: bold;
-      flex: 1;
-    }
+button{
+  border:0;
+  border-radius:15px;
+  padding:14px;
+  color:white;
+  background:#172231;
+  font-size:15px;
+  font-weight:bold;
+  flex:1;
+}
 
-    .green {
-      background: #72ff18;
-      color: #071006;
-    }
+button:active{
+  transform:scale(.97);
+}
 
-    .tabs {
-      display: flex;
-      gap: 10px;
-      padding: 10px 15px;
-    }
+.green{
+  background:#72ff18;
+  color:#071006;
+}
 
-    .tab {
-      border: 1px solid #23404a;
-      border-radius: 25px;
-      padding: 12px 20px;
-      color: #9caabd;
-    }
+.tabs{
+  display:flex;
+  gap:10px;
+  padding:10px 15px;
+}
 
-    .tab.active {
-      color: #7cff19;
-      border-color: #20a4a8;
-    }
+.tab{
+  border:1px solid #23404a;
+  border-radius:25px;
+  padding:12px 20px;
+  color:#9caabd;
+  background:#0d151f;
+}
 
-    .search {
-      margin: 10px 15px 18px;
-      padding: 17px;
-      border-radius: 16px;
-      background: #111a26;
-      color: #78879a;
-      border: 1px solid #202c3b;
-    }
+.tab.active{
+  color:#7cff19;
+  border-color:#20a4a8;
+}
 
-    .games {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      padding: 0 15px 90px;
-    }
+.search{
+  margin:10px 15px 18px;
+  padding:17px;
+  border-radius:16px;
+  background:#111a26;
+  color:#78879a;
+  border:1px solid #202c3b;
+}
 
-    .game {
-      background: #111a26;
-      border: 1px solid #253242;
-      border-radius: 16px;
-      overflow: hidden;
-      text-align: center;
-    }
+.games{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  padding:0 15px 90px;
+}
 
-    .game-icon {
-      height: 115px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 50px;
-      background: linear-gradient(135deg, #172536, #0b121b);
-    }
+.game{
+  background:#111a26;
+  border:1px solid #253242;
+  border-radius:16px;
+  overflow:hidden;
+  text-align:center;
+}
 
-    .game-name {
-      padding: 13px 5px;
-      font-weight: bold;
-      font-size: 14px;
-    }
+.game-icon{
+  height:115px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:50px;
+  background:linear-gradient(135deg,#172b38,#263c48);
+}
 
-    .bottom {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      background: #0c141e;
-      border-top: 1px solid #1d2937;
-      padding: 10px;
-    }
+.game-name{
+  padding:13px 5px;
+  font-weight:bold;
+  font-size:14px;
+}
 
-    .bottom button {
-      background: transparent;
-      color: #8290a0;
-    }
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  display:flex;
+  background:#0c141e;
+  border-top:1px solid #1d2937;
+  padding:10px;
+  z-index:10;
+}
 
-    .bottom .selected {
-      color: #7cff19;
-    }
-  </style>
+.bottom button{
+  background:transparent;
+  color:#8290a0;
+}
+
+.bottom .selected{
+  color:#7cff19;
+}
+
+#message{
+  position:fixed;
+  top:20px;
+  left:15px;
+  right:15px;
+  background:#172231;
+  border:1px solid #72ff18;
+  border-radius:15px;
+  padding:15px;
+  text-align:center;
+  display:none;
+  z-index:20;
+}
+
+@media(max-width:350px){
+  .games{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="header">🔥 OLOV PIN</div>
+<div id="message"></div>
 
-  <div class="brand">🇺🇿 UZ DONAT BOT 💎</div>
+<div class="header">
+  🔥 OLOV PIN
+</div>
 
-  <div class="balance">
-    <small>BALANS</small>
-    <div class="money">0 so'm</div>
+<div class="brand">
+  🇺🇿 UZ DONAT BOT 💎
+</div>
 
-    <div class="buttons">
-      <button class="green" onclick="topUp()">＋<br>To‘ldirish</button>
-      <button onclick="orders()">🧾<br>Buyurtmalar</button>
-      <button onclick="support()">💬<br>Yordam</button>
-    </div>
+<div class="balance">
+  <small>BALANS</small>
+  <div class="money" id="balance">0 so'm</div>
+
+  <div class="buttons">
+    <button class="green" onclick="topUp()">💳 Balans</button>
+    <button onclick="orders()">🧾 Buyurtmalar</button>
+    <button onclick="support()">💬 Yordam</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active">🎮 O'yinlar</button>
+  <button class="tab">⭐ Mashhur</button>
+</div>
+
+<div class="search">
+  🔎 O'yinni tanlang
+</div>
+
+<div class="games">
+
+  <div class="game" onclick="game('PUBG Mobile')">
+    <div class="game-icon">🔫</div>
+    <div class="game-name">PUBG Mobile</div>
   </div>
 
-  <div class="tabs">
-    <div class="tab active">🎮 O‘yinlar</div>
-    <div class="tab">🎟️ Promokodlar</div>
+  <div class="game" onclick="game('Mobile Legends')">
+    <div class="game-icon">⚔️</div>
+    <div class="game-name">Mobile Legends</div>
   </div>
 
-  <div class="search">🔍 O‘yin qidirish...</div>
-
-  <div class="games">
-
-    <div class="game" onclick="game('PUBG Mobile')">
-      <div class="game-icon">🎯</div>
-      <div class="game-name">PUBG Mobile</div>
-    </div>
-
-    <div class="game" onclick="game('Telegram Stars')">
-      <div class="game-icon">⭐</div>
-      <div class="game-name">Telegram Stars</div>
-    </div>
-
-    <div class="game" onclick="game('Telegram Premium')">
-      <div class="game-icon">✈️</div>
-      <div class="game-name">Telegram Premium</div>
-    </div>
-
-    <div class="game" onclick="game('Free Fire')">
-      <div class="game-icon">🔥</div>
-      <div class="game-name">Free Fire</div>
-    </div>
-
-    <div class="game" onclick="game('Mobile Legends')">
-      <div class="game-icon">⚔️</div>
-      <div class="game-name">Mobile Legends</div>
-    </div>
-
-    <div class="game" onclick="game('Standoff 2')">
-      <div class="game-icon">🔫</div>
-      <div class="game-name">Standoff 2</div>
-    </div>
-
+  <div class="game" onclick="game('Standoff 2')">
+    <div class="game-icon">🎯</div>
+    <div class="game-name">Standoff 2</div>
   </div>
 
-  <div class="bottom">
-    <button class="selected">⌂<br>Bosh</button>
-    <button onclick="orders()">▤<br>Tarix</button>
-    <button onclick="profile()">♙<br>Profil</button>
+  <div class="game" onclick="game('Free Fire')">
+    <div class="game-icon">🔥</div>
+    <div class="game-name">Free Fire</div>
   </div>
 
-  <script>
-    function game(name) {
-      alert(name + " tanlandi!");
-    }
+  <div class="game" onclick="game('Brawl Stars')">
+    <div class="game-icon">⭐</div>
+    <div class="game-name">Brawl Stars</div>
+  </div>
 
-    function topUp() {
-      alert("Balansni to‘ldirish bo‘limi tez orada qo‘shiladi.");
-    }
+  <div class="game" onclick="game('Clash of Clans')">
+    <div class="game-icon">🏰</div>
+    <div class="game-name">Clash of Clans</div>
+  </div>
 
-    function orders() {
-      alert("Buyurtmalar bo‘limi.");
-    }
+</div>
 
-    function support() {
-      alert("Support bo‘limi.");
-    }
+<div class="bottom">
+  <button class="selected" onclick="home()">🏠<br>Bosh sahifa</button>
+  <button onclick="orders()">🧾<br>Buyurtma</button>
+  <button onclick="support()">💬<br>Yordam</button>
+  <button onclick="profile()">👤<br>Profil</button>
+</div>
 
-    function profile() {
-      alert("Profil bo‘limi.");
-    }
-  </script>
+<script>
+
+let balance = 0;
+
+function showMessage(text){
+  const box = document.getElementById("message");
+  box.innerText = text;
+  box.style.display = "block";
+
+  setTimeout(function(){
+    box.style.display = "none";
+  },2000);
+}
+
+function topUp(){
+  showMessage("💳 Balans to‘ldirish bo‘limi tez orada qo‘shiladi.");
+}
+
+function orders(){
+  showMessage("🧾 Buyurtmalar bo‘limi.");
+}
+
+function support(){
+  showMessage("💬 Yordam bo‘limi.");
+}
+
+function profile(){
+  showMessage("👤 Profil bo‘limi.");
+}
+
+function home(){
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function game(name){
+  showMessage("🎮 " + name + " tanlandi!");
+}
+
+</script>
 
 </body>
-      </html>
+</html>
