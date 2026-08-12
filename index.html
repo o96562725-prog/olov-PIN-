@@ -300,5 +300,79 @@ function game(name){
 
 </script>
 
-</body>
-</html>
+<!-- YANGI FUNKSIYALAR -->
+<div id="extraPanel">
+  <h2>🔥 OLOV PIN</h2>
+
+  <button onclick="extraGame()">🎮 O‘yinlar</button>
+  <button onclick="extraProfile()">👤 Profil</button>
+  <button onclick="extraOrders()">🛒 Buyurtmalar</button>
+  <button onclick="extraSupport()">💬 Yordam</button>
+  <button onclick="extraBot()">🤖 O‘zbekiston boti</button>
+
+  <div id="extraMessage">Kerakli bo‘limni tanlang 👆</div>
+</div>
+
+<style>
+#extraPanel{
+  margin:20px auto;
+  padding:20px;
+  max-width:420px;
+  border-radius:20px;
+  background:#111827;
+  text-align:center;
+  font-family:Arial,sans-serif;
+}
+
+#extraPanel h2{
+  margin-bottom:15px;
+}
+
+#extraPanel button{
+  width:100%;
+  margin:7px 0;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+#extraMessage{
+  margin-top:15px;
+  padding:15px;
+  border-radius:12px;
+  background:#1f2937;
+}
+</style>
+
+<script>
+function extraGame(){
+  document.getElementById("extraMessage").innerHTML =
+  "🎮 O‘yinlar bo‘limi ochildi! Tez orada o‘yinlar qo‘shamiz.";
+}
+
+function extraProfile(){
+  document.getElementById("extraMessage").innerHTML =
+  "👤 Profil bo‘limi. Bu yerda foydalanuvchi ma’lumotlari chiqadi.";
+}
+
+function extraOrders(){
+  document.getElementById("extraMessage").innerHTML =
+  "🛒 Buyurtmalar bo‘limi. Buyurtmalaringiz shu yerda ko‘rinadi.";
+}
+
+function extraSupport(){
+  document.getElementById("extraMessage").innerHTML =
+  "💬 Yordam: savolingizni yozing, yordam beramiz.";
+}
+
+function extraBot(){
+  document.getElementById("extraMessage").innerHTML =
+  "🤖 O‘zbekiston boti ishga tushdi! 🇺🇿<br><br>Salom! Sizga qanday yordam beray?";
+}
+</script>
+  </body>    
+</html> 
+
+
