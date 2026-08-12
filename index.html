@@ -17,7 +17,7 @@ body{
   background:#050b12;
   color:white;
   min-height:100vh;
-  padding-bottom:80px;
+  padding-bottom:85px;
 }
 
 .header{
@@ -69,13 +69,9 @@ button{
   padding:14px;
   color:white;
   background:#172231;
-  font-size:15px;
+  font-size:14px;
   font-weight:bold;
   flex:1;
-}
-
-button:active{
-  transform:scale(.97);
 }
 
 .green{
@@ -99,7 +95,7 @@ button:active{
 
 .tab.active{
   color:#7cff19;
-  border-color:#20a4a8;
+  border-color:#72ff18;
 }
 
 .search{
@@ -175,12 +171,6 @@ button:active{
   display:none;
   z-index:20;
 }
-
-@media(max-width:350px){
-  .games{
-    grid-template-columns:1fr;
-  }
-}
 </style>
 </head>
 
@@ -253,126 +243,4 @@ button:active{
 <div class="bottom">
   <button class="selected" onclick="home()">🏠<br>Bosh sahifa</button>
   <button onclick="orders()">🧾<br>Buyurtma</button>
-  <button onclick="support()">💬<br>Yordam</button>
-  <button onclick="profile()">👤<br>Profil</button>
-</div>
-
-<script>
-
-let balance = 0;
-
-function showMessage(text){
-  const box = document.getElementById("message");
-  box.innerText = text;
-  box.style.display = "block";
-
-  setTimeout(function(){
-    box.style.display = "none";
-  },2000);
-}
-
-function topUp(){
-  showMessage("💳 Balans to‘ldirish bo‘limi tez orada qo‘shiladi.");
-}
-
-function orders(){
-  showMessage("🧾 Buyurtmalar bo‘limi.");
-}
-
-function support(){
-  showMessage("💬 Yordam bo‘limi.");
-}
-
-function profile(){
-  showMessage("👤 Profil bo‘limi.");
-}
-
-function home(){
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
-
-function game(name){
-  showMessage("🎮 " + name + " tanlandi!");
-}
-
-</script>
-
-<!-- YANGI FUNKSIYALAR -->
-<div id="extraPanel">
-  <h2>🔥 OLOV PIN</h2>
-
-  <button onclick="extraGame()">🎮 O‘yinlar</button>
-  <button onclick="extraProfile()">👤 Profil</button>
-  <button onclick="extraOrders()">🛒 Buyurtmalar</button>
-  <button onclick="extraSupport()">💬 Yordam</button>
-  <button onclick="extraBot()">🤖 O‘zbekiston boti</button>
-
-  <div id="extraMessage">Kerakli bo‘llimni tanlang 👆</div>
-</div>
-
-<style>
-#extraPanel{
-  margin:20px auto;
-  padding:20px;
-  max-width:420px;
-  border-radius:20px;
-  background:#111827;
-  text-align:center;
-  font-family:Arial,sans-serif;
-}
-
-#extraPanel h2{
-  margin-bottom:15px;
-}
-
-#extraPanel button{
-  width:100%;
-  margin:7px 0;
-  padding:14px;
-  border:0;
-  border-radius:12px;
-  font-size:16px;
-  cursor:pointer;
-}
-
-#extraMessage{
-  margin-top:15px;
-  padding:15px;
-  border-radius:12px;
-  background:#1f2937;
-}
-</style>
-
-<script>
-function extraGame(){
-  document.getElementById("extraMessage").innerHTML =
-  "🎮 O‘yinlar bo‘limi ochildi! Tez orada o‘yinlar qo‘shamiz.";
-}
-
-function extraProfile(){
-  document.getElementById("extraMessage").innerHTML =
-  "👤 Profil bo‘limi. Bu yerda foydalanuvchi ma’lumotlari chiqadi.";
-}
-
-function extraOrders(){
-  document.getElementById("extraMessage").innerHTML =
-  "🛒 Buyurtmalar bo‘limi. Buyurtmalaringiz shu yerda ko‘rinadi.";
-}
-
-function extraSupport(){
-  document.getElementById("extraMessage").innerHTML =
-  "💬 Yordam: savolingizni yozing, yordam beramiz.";
-}
-
-function extraBot(){
-  document.getElementById("extraMessage").innerHTML =
-  "🤖 O‘zbekiston boti ishga tushdi! 🇺🇿<br><br>Salom! Sizga qanday yordam beray?";
-}
-</script>
-  </body>    
-</html> 
-
-
+  <button onclick="support()">💬<br>
