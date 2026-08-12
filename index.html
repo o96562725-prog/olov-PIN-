@@ -250,7 +250,21 @@ button{
 
 <script>
 function topUp() {
-  alert("💳 Balansni to‘ldirish bo‘limi");
+ const summa = prompt("💳 Balansni to‘ldirish\n\nSummani kiriting (so‘m):");
+
+if (summa && Number(summa) > 0) {
+  const usul = prompt("To‘lov usulini tanlang:\n\n1 — Click\n2 — Payme");
+
+  if (usul === "1") {
+    alert("💳 Click tanlandi.\nSumma: " + summa + " so‘m\n\nClick to‘lovi keyingi bosqichda ulanadi.");
+  } else if (usul === "2") {
+    alert("💳 Payme tanlandi.\nSumma: " + summa + " so‘m\n\nPayme to‘lovi keyingi bosqichda ulanadi.");
+  } else {
+    alert("❌ To‘lov usuli tanlanmadi.");
+  }
+} else {
+  alert("❌ To‘g‘ri summa kiriting.");
+}
 }
 
 function orders() {
