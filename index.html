@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OLOV PIN</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #050b12;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .header {
+      padding: 18px 20px;
+      font-size: 25px;
+      font-weight: bold;
+      text-align: center;
+      border-bottom: 1px solid #18222e;
+    }
+
+    .brand {
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #72ff18;
+    }
+
+    .balance {
+      margin: 15px;
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #101b2b, #092f3a);
+      border: 1px solid #263747;
+    }
+
+    .balance small {
+      color: #9aa8b8;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .money {
+      margin: 8px 0 20px;
+      font-size: 35px;
+      font-weight: bold;
+      color: #7cff19;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 15px;
+      padding: 15px;
+      color: white;
+      background: #172231;
+      font-size: 15px;
+      font-weight: bold;
+      flex: 1;
+    }
+
+    .green {
+      background: #72ff18;
+      color: #071006;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      padding: 10px 15px;
+    }
+
+    .tab {
+      border: 1px solid #23404a;
+      border-radius: 25px;
+      padding: 12px 20px;
+      color: #9caabd;
+    }
+
+    .tab.active {
+      color: #7cff19;
+      border-color: #20a4a8;
+    }
+
+    .search {
+      margin: 10px 15px 18px;
+      padding: 17px;
+      border-radius: 16px;
+      background: #111a26;
+      color: #78879a;
+      border: 1px solid #202c3b;
+    }
+
+    .games {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0 15px 90px;
+    }
+
+    .game {
+      background: #111a26;
+      border: 1px solid #253242;
+      border-radius: 16px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .game-icon {
+      height: 115px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      background: linear-gradient(135deg, #172536, #0b121b);
+    }
+
+    .game-name {
+      padding: 13px 5px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      background: #0c141e;
+      border-top: 1px solid #1d2937;
+      padding: 10px;
+    }
+
+    .bottom button {
+      background: transparent;
+      color: #8290a0;
+    }
+
+    .bottom .selected {
+      color: #7cff19;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">🔥 OLOV PIN</div>
+
+  <div class="brand">🇺🇿 UZ DONAT BOT 💎</div>
+
+  <div class="balance">
+    <small>BALANS</small>
+    <div class="money">0 so'm</div>
+
+    <div class="buttons">
+      <button class="green" onclick="topUp()">＋<br>To‘ldirish</button>
+      <button onclick="orders()">🧾<br>Buyurtmalar</button>
+      <button onclick="support()">💬<br>Yordam</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active">🎮 O‘yinlar</div>
+    <div class="tab">🎟️ Promokodlar</div>
+  </div>
+
+  <div class="search">🔍 O‘yin qidirish...</div>
+
+  <div class="games">
+
+    <div class="game" onclick="game('PUBG Mobile')">
+      <div class="game-icon">🎯</div>
+      <div class="game-name">PUBG Mobile</div>
+    </div>
+
+    <div class="game" onclick="game('Telegram Stars')">
+      <div class="game-icon">⭐</div>
+      <div class="game-name">Telegram Stars</div>
+    </div>
+
+    <div class="game" onclick="game('Telegram Premium')">
+      <div class="game-icon">✈️</div>
+      <div class="game-name">Telegram Premium</div>
+    </div>
+
+    <div class="game" onclick="game('Free Fire')">
+      <div class="game-icon">🔥</div>
+      <div class="game-name">Free Fire</div>
+    </div>
+
+    <div class="game" onclick="game('Mobile Legends')">
+      <div class="game-icon">⚔️</div>
+      <div class="game-name">Mobile Legends</div>
+    </div>
+
+    <div class="game" onclick="game('Standoff 2')">
+      <div class="game-icon">🔫</div>
+      <div class="game-name">Standoff 2</div>
+    </div>
+
+  </div>
+
+  <div class="bottom">
+    <button class="selected">⌂<br>Bosh</button>
+    <button onclick="orders()">▤<br>Tarix</button>
+    <button onclick="profile()">♙<br>Profil</button>
+  </div>
+
+  <script>
+    function game(name) {
+      alert(name + " tanlandi!");
+    }
+
+    function topUp() {
+      alert("Balansni to‘ldirish bo‘limi tez orada qo‘shiladi.");
+    }
+
+    function orders() {
+      alert("Buyurtmalar bo‘limi.");
+    }
+
+    function support() {
+      alert("Support bo‘limi.");
+    }
+
+    function profile() {
+      alert("Profil bo‘limi.");
+    }
+  </script>
+
+</body>
+      </html>
