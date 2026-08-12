@@ -250,29 +250,29 @@ button{
 
 <script>
 function topUp() {
- const summa = prompt("💳 Balansni to‘ldirish\n\nSummani kiriting (so‘m):");
+  const summa = prompt("💰 Balansni to'ldirish\n\nSummani kiriting (so'm):");
 
-if (summa && Number(summa) > 0) {
-  const usul = prompt("To‘lov usulini tanlang:\n\n1 — Click\n2 — Payme");
+  if (summa && Number(summa) > 0) {
+    const usul = prompt("To'lov usulini tanlang:\n\n1 — Click\n2 — Payme");
 
-  if (usul === "1") {
-    alert("💳 Click tanlandi.\nSumma: " + summa + " so‘m\n\nClick to‘lovi keyingi bosqichda ulanadi.");
-  } else if (usul === "2") {
-    alert("💳 Payme tanlandi.\nSumma: " + summa + " so‘m\n\nPayme to‘lovi keyingi bosqichda ulanadi.");
+    if (usul === "1") {
+      alert("💳 Click tanlandi.\nSumma: " + summa + " so'm");
+    } else if (usul === "2") {
+      alert("💳 Payme tanlandi.\nSumma: " + summa + " so'm");
+    } else {
+      alert("❌ To'lov usuli tanlanmadi.");
+    }
   } else {
-    alert("❌ To‘lov usuli tanlanmadi.");
+    alert("❌ To'g'ri summa kiriting.");
   }
-} else {
-  alert("❌ To‘g‘ri summa kiriting.");
 }
 
-
-  function orders() {
+function orders() {
   alert("📡 Buyurtma Holati\n\n⏳ Buyurtmangiz tekshirilmoqda...");
-  }
+}
 
 function support() {
-  alert("Yordam bo‘limi 💬");
+  alert("💬 Yordam bo'limi");
 }
 
 function home() {
@@ -280,7 +280,7 @@ function home() {
 }
 
 function game(name) {
-  alert(name + " tanlandi 🎮");
+  alert(name + " — tanlandi 🎮");
 }
 </script>
 
