@@ -295,8 +295,35 @@ function home() {
 }
 
 function game(name) {
-  alert(name + " — tanlandi 🎮");
-}
+  const playerId = prompt("🎮 " + name + "\n\n👤 Player ID / ID raqamingizni kiriting:");
+
+  if (!playerId) {
+    alert("❌ Player ID kiritilmadi.");
+    return;
+  }
+
+  const summa = prompt("💰 Qancha so'mlik buyurtma qilasiz?\n\nMasalan: 10000");
+
+  if (!summa || Number(summa) <= 0) {
+    alert("❌ To'g'ri summa kiriting.");
+    return;
+  }
+
+  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+  orders.push({
+    game: name,
+    playerId: playerId,
+    summa: Number(summa),
+    status: "Tekshirilmoqda"
+  });
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  alert("✅ Buyurtmangiz qabul qilindi!\n\n🎮 O'yin: " + name +
+        "\n👤 ID: " + playerId +
+        "\n💰 Summa: " + summa + " so'm");
+        }
 </script>
 
 </body>
