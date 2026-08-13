@@ -295,35 +295,58 @@ function home() {
 }
 
 function game(name) {
-  const playerId = prompt("🎮 " + name + "\n\n👤 Player ID / ID raqamingizni kiriting:");
+  if (name === "PUBG Mobile") {
+    const packages = [
+      { uc: 60, price: null },
+      { uc: 325, price: null },
+      { uc: 660, price: null },
+      { uc: 1800, price: null }
+    ];
 
-  if (!playerId) {
-    alert("❌ Player ID kiritilmadi.");
+    let text = "🪙 PUBG MOBILE UC\n\n";
+    packages.forEach((p, i) => {
+      text += (i + 1) + ". " + p.uc + " UC";
+      text += p.price ? " — " + p.price + " so'm" : " — Narx API orqali olinadi";
+      text += "\n";
+    });
+
+    const choice = prompt(
+      text +
+      "\nPaket raqamini tanlang (1-4):"
+    );
+
+    const index = Number(choice) - 1;
+
+    if (index < 0 || index >= packages.length) {
+      alert("❌ Noto'g'ri paket tanlandi.");
+      return;
+    }
+
+    const selected = packages[index];
+
+    const playerId = prompt(
+      "🎮 PUBG Mobile\n\n" +
+      "🪙 " + selected.uc + " UC\n\n" +
+      "👤 Player ID raqamingizni kiriting:"
+    );
+
+    if (!playerId) {
+      alert("❌ Player ID kiritilmadi.");
+      return;
+    }
+
+    alert(
+      "✅ Paket tanlandi!\n\n" +
+      "🪙 " + selected.uc + " UC\n" +
+      "👤 ID: " + playerId + "\n\n" +
+      "💰 Narx keyin API orqali olinadi."
+    );
+
     return;
   }
 
-  const summa = prompt("💰 Qancha so'mlik buyurtma qilasiz?\n\nMasalan: 10000");
-
-  if (!summa || Number(summa) <= 0) {
-    alert("❌ To'g'ri summa kiriting.");
-    return;
-  }
-
-  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
-
-  orders.push({
-    game: name,
-    playerId: playerId,
-    summa: Number(summa),
-    status: "Tekshirilmoqda"
-  });
-
-  localStorage.setItem("orders", JSON.stringify(orders));
-
-  alert("✅ Buyurtmangiz qabul qilindi!\n\n🎮 O'yin: " + name +
-        "\n👤 ID: " + playerId +
-        "\n💰 Summa: " + summa + " so'm");
-        }
+  alert("🎮 " + name + " tanlandi.");
+    }
 </script>
 
 </body>
