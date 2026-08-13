@@ -268,7 +268,22 @@ function topUp() {
 }
 
 function orders() {
-  alert("📡 Buyurtma Holati\n\n⏳ Buyurtmangiz tekshirilmoqda...");
+  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+  if (orders.length === 0) {
+    alert("📋 Buyurtmalar\n\n❌ Hozircha buyurtmalar mavjud emas.");
+    return;
+  }
+
+  let text = "📋 BUYURTMALAR\n\n";
+
+  orders.forEach((order, index) => {
+    text += `🛒 Buyurtma #${index + 1}\n`;
+    text += `🎮 ${order.game || "Noma'lum"}\n`;
+    text += `📌 Holati: ${order.status || "Tekshirilmoqda"}\n\n`;
+  });
+
+  alert(text);
 }
 
 function support() {
