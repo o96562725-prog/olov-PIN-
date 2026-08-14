@@ -131,96 +131,231 @@ button{
   background:linear-gradient(135deg,#172b38,#263c48);
 }
 
-.game-name{
-  padding:13px 5px;
-  font-weight:bold;
-  font-size:14px;
+  * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-.bottom{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  display:flex;
-  background:#0c141e;
-  border-top:1px solid #1d2937;
-  padding:10px;
-  z-index:10;
+body {
+  background: #080b18;
+  color: white;
+  min-height: 100vh;
+  padding-bottom: 95px;
 }
 
-.bottom button{
-  background:transparent;
-  color:#8290a0;
+.header {
+  padding: 22px 20px 8px;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: left;
+  color: white;
 }
 
-.bottom .selected{
-  color:#7cff19;
+.brand {
+  padding: 8px 20px 18px;
+  font-size: 16px;
+  color: #aeb3c7;
 }
 
-#message{
-  position:fixed;
-  top:20px;
-  left:15px;
-  right:15px;
-  background:#172231;
-  border:1px solid #72ff18;
-  border-radius:15px;
-  padding:15px;
-  text-align:center;
-  display:none;
-  z-index:20;
+.balance {
+  margin: 0 15px 18px;
+  padding: 20px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #11182a, #18233b);
+  border: 1px solid #29344d;
+}
+
+.balance small {
+  display: block;
+  color: #727b96;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.money {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  padding: 0 15px;
+}
+
+button {
+  border: 0;
+  border-radius: 16px;
+  padding: 15px;
+  color: white;
+  background: #11182a;
+  border: 1px solid #29344d;
+  font-size: 14px;
+  font-weight: bold;
+  flex: 1;
+}
+
+.green {
+  background: linear-gradient(135deg, #965cff, #7445e8);
+  border: 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  padding: 18px 15px 10px;
+}
+
+.tab {
+  border: 1px solid #29344d;
+  border-radius: 18px;
+  padding: 14px 20px;
+  color: #8e96ae;
+  background: #10172a;
+}
+
+.tab.active {
+  color: #a56cff;
+  border-color: #8d5cff;
+}
+
+.search {
+  margin: 10px 15px 18px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #11182a;
+  color: #8992ad;
+  border: 1px solid #29344d;
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 15px 90px;
+}
+
+.game {
+  background: #11182a;
+  border: 1px solid #29344d;
+  border-radius: 18px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.game-icon {
+  height: 115px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  background: linear-gradient(135deg, #17223b, #291557);
+}
+
+.game-name {
+  padding: 13px 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: #10172a;
+  border-top: 1px solid #29344d;
+  padding: 10px;
+  z-index: 10;
+  border-radius: 25px 25px 0 0;
+}
+
+.bottom button {
+  background: transparent;
+  border: 0;
+  color: #707990;
+  padding: 10px 5px;
+  font-size: 12px;
+}
+
+.bottom .selected {
+  color: #a56cff;
+}
+
+#message {
+  position: fixed;
+  top: 20px;
+  left: 15px;
+  right: 15px;
+  background: #171f35;
+  border: 1px solid #8b5cff;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  display: none;
+  z-index: 20;
 }
 </style>
 </head>
-
 <body>
 
 <div id="message"></div>
 
 <div class="header">
-  🔥 OLOV PIN
+  👋 Salom
 </div>
 
 <div class="brand">
-  🇺🇿 UZ DONAT BOT 💎
+  💎 OLOV PIN BOT
 </div>
 
 <div class="balance">
   <small>BALANS</small>
-  <div class="money" id="balance">0 so'm</div>
+  <div class="money" id="balance">1 000 so‘m</div>
 
   <div class="buttons">
-    <button class="green" onclick="topUp()">💳 Balans</button>
-    <button onclick="orders()">🧾 Buyurtmalar</button>
-    <button onclick="support()">💬 Yordam</button>
+    <button class="green" onclick="topUp()">＋ To‘ldirish</button>
   </div>
 </div>
 
-<div class="tabs">
-  <button class="tab active">🎮 O'yinlar</button>
-  <button class="tab">⭐ Mashhur</button>
+<div class="buttons">
+  <button onclick="orders()">🎟 Promokodlar</button>
+  <button onclick="support()">🎧 Yordam</button>
 </div>
 
-<div class="search">
-  🔎 O'yinni tanlang
+<div style="
+  margin:18px 15px;
+  padding:35px 15px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#25104d,#6428c9,#171d45);
+  border:1px solid #49347a;
+  text-align:center;
+  font-size:23px;
+  font-weight:bold;
+">
+  🎮 O‘YINLAR UCHUN<br>
+  <span style="color:#b879ff;">MAXSUS TAKLIFLAR</span>
+</div>
+
+<div style="
+  padding:0 15px 12px;
+  font-size:22px;
+  font-weight:bold;
+">
+  Ommabop o‘yinlar
 </div>
 
 <div class="games">
 
   <div class="game" onclick="game('PUBG Mobile')">
-    <div class="game-icon">🔫</div>
-    <div class="game-name">PUBG Mobile</div>
-  </div>
-
-  <div class="game" onclick="game('Mobile Legends')">
-    <div class="game-icon">⚔️</div>
-    <div class="game-name">Mobile Legends</div>
-  </div>
-
-  <div class="game" onclick="game('Standoff 2')">
     <div class="game-icon">🎯</div>
-    <div class="game-name">Standoff 2</div>
+    <div class="game-name">PUBG Mobile</div>
   </div>
 
   <div class="game" onclick="game('Free Fire')">
@@ -228,9 +363,19 @@ button{
     <div class="game-name">Free Fire</div>
   </div>
 
+  <div class="game" onclick="game('Mobile Legends')">
+    <div class="game-icon">⚔️</div>
+    <div class="game-name">Mobile Legends</div>
+  </div>
+
   <div class="game" onclick="game('Brawl Stars')">
     <div class="game-icon">⭐</div>
     <div class="game-name">Brawl Stars</div>
+  </div>
+
+  <div class="game" onclick="game('Standoff 2')">
+    <div class="game-icon">🎮</div>
+    <div class="game-name">Standoff 2</div>
   </div>
 
   <div class="game" onclick="game('Clash of Clans')">
@@ -241,11 +386,27 @@ button{
 </div>
 
 <div class="bottom">
-  <button class="selected" onclick="home()">🏠<br>Bosh sahifa</button>
-  <button onclick="orders()">🧾<br>Buyurtma</button>
-  <button onclick="support()">💬<br>                       
-    
+
+  <button class="selected" onclick="home()">
+    🏠<br>Bosh sahifa
   </button>
+
+  <button onclick="orders()">
+    🎮<br>Buyurtma
+  </button>
+
+  <button onclick="topUp()">
+    💳<br>To‘ldirish
+  </button>
+
+  <button onclick="orders()">
+    🕐<br>Buyurtmalar
+  </button>
+
+  <button onclick="support()">
+    👤<br>Profil
+  </button>
+
 </div>
 
 <script>
