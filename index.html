@@ -437,7 +437,8 @@ function topUp() {
     alert("❌ To'g'ri summa kiriting.");
   }
 }
-
+function orders() {
+  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
   if (orders.length === 0) {
     alert("📋 Buyurtmalar\n\n❌ Hozircha buyurtmalar mavjud emas.");
     return;
