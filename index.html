@@ -414,12 +414,22 @@ function topUp() {
   const summa = prompt("💰 Balansni to'ldirish\n\nSummani kiriting (so'm):");
 
   if (summa && Number(summa) > 0) {
-    const usul = prompt("To'lov usulini tanlang:\n\n1 — Click\n2 — Payme");
+    const usul = prompt(
+      "💳 TO'LOV USULINI TANLANG\n\n" +
+      "1 — Humo 💳\n" +
+      "2 — UzCard 💳\n" +
+      "3 — Xalqaro Visa 💳\n" +
+      "4 — Bankomat 🏦"
+    );
 
     if (usul === "1") {
-      alert("💳 Click tanlandi.\nSumma: " + summa + " so'm");
+      alert("💳 Humo tanlandi.\nSumma: " + summa + " so'm");
     } else if (usul === "2") {
-      alert("💳 Payme tanlandi.\nSumma: " + summa + " so'm");
+      alert("💳 UzCard tanlandi.\nSumma: " + summa + " so'm");
+    } else if (usul === "3") {
+      alert("💳 Xalqaro Visa tanlandi.\nSumma: " + summa + " so'm");
+    } else if (usul === "4") {
+      alert("🏦 Bankomat tanlandi.\nSumma: " + summa + " so'm");
     } else {
       alert("❌ To'lov usuli tanlanmadi.");
     }
@@ -427,9 +437,6 @@ function topUp() {
     alert("❌ To'g'ri summa kiriting.");
   }
 }
-
-function orders() {
-  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
 
   if (orders.length === 0) {
     alert("📋 Buyurtmalar\n\n❌ Hozircha buyurtmalar mavjud emas.");
