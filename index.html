@@ -464,58 +464,102 @@ function home() {
 }
 
 function game(name) {
-  if (name === "PUBG Mobile") {
+  
+   if (name === "PUBG Mobile") {
     const packages = [
-      { uc: 60, price: null },
-      { uc: 325, price: null },
-      { uc: 660, price: null },
-      { uc: 1800, price: null }
+      { uc: 60, price: "11 700" },
+      { uc: 325, price: "59 000" },
+      { uc: 660, price: "115 000" },
+      { uc: 1800, price: "290 000" },
+      { uc: 3850, price: "575 000" },
+      { uc: 8100, price: "1 165 000" }
     ];
 
-    let text = "🪙 PUBG MOBILE UC\n\n";
-    packages.forEach((p, i) => {
-      text += (i + 1) + ". " + p.uc + " UC";
-      text += p.price ? " — " + p.price + " so'm" : " — Narx API orqali olinadi";
-      text += "\n";
+    let box = document.createElement("div");
+
+    box.style.position = "fixed";
+    box.style.top = "0";
+    box.style.left = "0";
+    box.style.width = "100%";
+    box.style.height = "100%";
+    box.style.background = "#080b18";
+    box.style.color = "white";
+    box.style.zIndex = "9999";
+    box.style.padding = "25px 15px";
+    box.style.overflowY = "auto";
+
+    box.innerHTML = `
+      <button onclick="this.parentElement.remove()"
+        style="padding:10px 18px;border-radius:14px;border:0;background:#18233b;color:white;font-size:16px;">
+        ← Orqaga
+      </button>
+
+      <h1 style="margin:25px 0 8px;font-size:28px;">
+        🎮 PUBG Mobile
+      </h1>
+
+      <p style="color:#9aa8b8;margin-bottom:25px;">
+        🪙 UC Paketni tanlang
+      </p>
+
+      <div id="pubgPackages"
+        style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+      </div>
+    `;
+
+    document.body.appendChild(box);
+
+    const list = box.querySelector("#pubgPackages");
+
+    packages.forEach((p) => {
+      const card = document.createElement("button");
+
+      card.style.background = "#111a26";
+      card.style.border = "1px solid #29344d";
+      card.style.borderRadius = "18px";
+      card.style.padding = "20px 10px";
+      card.style.color = "white";
+      card.style.minHeight = "120px";
+      card.style.cursor = "pointer";
+
+      card.innerHTML = `
+        <div style="font-size:30px;">🪙</div>
+        <div style="font-size:20px;font-weight:bold;margin-top:8px;">
+          ${p.uc} UC
+        </div>
+        <div style="font-size:15px;color:#aeb3c7;margin-top:7px;">
+          ${p.price} so'm
+        </div>
+      `;
+
+      card.onclick = function() {
+        const playerId = prompt(
+          "🎮 PUBG Mobile\n\n" +
+          "🪙 " + p.uc + " UC\n" +
+          "💰 " + p.price + " so'm\n\n" +
+          "👤 Player ID raqamingizni kiriting:"
+        );
+
+        if (!playerId) {
+          alert("❌ Player ID kiritilmadi.");
+          return;
+        }
+
+        alert(
+          "✅ Paket tanlandi!\n\n" +
+          "🪙 " + p.uc + " UC\n" +
+          "💰 " + p.price + " so'm\n" +
+          "👤 ID: " + playerId
+        );
+      };
+
+      list.appendChild(card);
     });
-
-    const choice = prompt(
-      text +
-      "\nPaket raqamini tanlang (1-4):"
-    );
-
-    const index = Number(choice) - 1;
-
-    if (index < 0 || index >= packages.length) {
-      alert("❌ Noto'g'ri paket tanlandi.");
-      return;
-    }
-
-    const selected = packages[index];
-
-    const playerId = prompt(
-      "🎮 PUBG Mobile\n\n" +
-      "🪙 " + selected.uc + " UC\n\n" +
-      "👤 Player ID raqamingizni kiriting:"
-    );
-
-    if (!playerId) {
-      alert("❌ Player ID kiritilmadi.");
-      return;
-    }
-
-    alert(
-      "✅ Paket tanlandi!\n\n" +
-      "🪙 " + selected.uc + " UC\n" +
-      "👤 ID: " + playerId + "\n\n" +
-      "💰 Narx keyin API orqali olinadi."
-    );
 
     return;
   }
 
   alert("🎮 " + name + " tanlandi.");
-    }
 </script>
 
 </body>
