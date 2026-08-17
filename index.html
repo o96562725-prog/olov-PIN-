@@ -695,7 +695,106 @@ function game(name) {
           ${p.price} so'm
         </div>
       `;
+    if (name === "Free Fire") {
+  const packages = [
+    { diamond: 110, price: "10 400" },
+    { diamond: 341, price: "32 000" },
+    { diamond: 572, price: "54 000" },
+    { diamond: 1166, price: "103 000" },
+    { diamond: 6160, price: "513 000" }
+  ];
 
+  let box = document.createElement("div");
+
+  box.style.position = "fixed";
+  box.style.top = "0";
+  box.style.left = "0";
+  box.style.width = "100%";
+  box.style.height = "100%";
+  box.style.background = "#080b18";
+  box.style.zIndex = "9999";
+  box.style.overflowY = "auto";
+  box.style.padding = "20px";
+  box.style.boxSizing = "border-box";
+
+  let list = document.createElement("div");
+  list.style.maxWidth = "420px";
+  list.style.margin = "0 auto";
+
+  list.innerHTML = `
+    <div style="
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+    ">
+      <h2 style="color:white;margin:0;">🔥 Free Fire</h2>
+
+      <button onclick="this.closest('[style*=fixed]').remove()" style="
+        border:0;
+        background:#263244;
+        color:white;
+        width:40px;
+        height:40px;
+        border-radius:12px;
+        font-size:20px;
+      ">✕</button>
+    </div>
+
+    <p style="color:#9ca3af;margin-bottom:15px;">
+      💎 Diamond paketini tanlang
+    </p>
+  `;
+
+  packages.forEach(p => {
+    let card = document.createElement("button");
+
+    card.style.width = "100%";
+    card.style.padding = "18px";
+    card.style.marginBottom = "12px";
+    card.style.border = "1px solid #303b52";
+    card.style.borderRadius = "18px";
+    card.style.background = "#182235";
+    card.style.color = "white";
+    card.style.fontSize = "17px";
+    card.style.fontWeight = "bold";
+    card.style.textAlign = "left";
+
+    card.innerHTML =
+      "💎 " + p.diamond.toLocaleString("uz-UZ") +
+      " Diamond" +
+      "<span style='float:right;'>" +
+      p.price + " so'm</span>";
+
+    card.onclick = function() {
+      const playerId = prompt(
+        "🔥 Free Fire\n\n" +
+        "💎 " + p.diamond.toLocaleString("uz-UZ") + " Diamond\n" +
+        "💰 " + p.price + " so'm\n\n" +
+        "👤 Player ID raqamingizni kiriting:"
+      );
+
+      if (!playerId) {
+        alert("❌ Player ID kiritilmadi.");
+        return;
+      }
+
+      alert(
+        "✅ Paket tanlandi!\n\n" +
+        "💎 " + p.diamond.toLocaleString("uz-UZ") + " Diamond\n" +
+        "💰 " + p.price + " so'm\n" +
+        "👤 ID: " + playerId
+      );
+    };
+
+    list.appendChild(card);
+  });
+
+  box.appendChild(list);
+  document.body.appendChild(box);
+
+  return;
+    }
       card.onclick = function() {
         const playerId = prompt(
           "🎮 PUBG Mobile\n\n" +
