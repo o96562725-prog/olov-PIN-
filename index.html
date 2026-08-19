@@ -659,11 +659,7 @@ function selectPayment(method) {
   document.body.appendChild(modal);
 }
 
-function setAmount(amount) {
-  document.getElementById("amountInput").value = amount;
-}
-
-function continuePayment(method) {
+ function continuePayment(method) {
   const amount = Number(document.getElementById("amountInput").value);
 
   if (!amount || amount < 1000) {
@@ -672,12 +668,12 @@ function continuePayment(method) {
   }
 
   alert(
-    "✅ " + method +
-    " tanlandi.\n\n💰 Summa: " +
-    amount.toLocaleString("uz-UZ") +
-    " so‘m"
+    "💳 TO‘LOV QILISH\n\n" +
+    "💳 Usul: " + method + "\n" +
+    "💰 Summa: " + amount.toLocaleString("uz-UZ") + " so‘m"
   );
 }
+
 function orders() {
   const orders = JSON.parse(localStorage.getItem("orders") || "[]");
   if (orders.length === 0) {
