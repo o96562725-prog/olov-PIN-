@@ -410,17 +410,6 @@ button {
 </div>
 
 <script>
-  function profile() {
-  const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
-
-  if (!user) {
-    alert("❌ Telegram ma'lumotlari topilmadi.");
-    return;
-  }
-
-  const name = user.first_name || "Noma'lum";
-  const username = user.username ? "@" + user.username : "Username yo‘q";
-  const id = user.id;
 
   const oldModal = document.getElementById("profileModal");
   if (oldModal) oldModal.remove();
@@ -440,11 +429,9 @@ function profile() {
   const username = user.username ? "@" + user.username : "Username yo‘q";
   const id = user.id;
 
-  // Har bir Telegram ID uchun alohida balans
   const balanceKey = "balance_" + id;
   const balance = Number(localStorage.getItem(balanceKey) || 0);
 
-  // Har bir Telegram ID uchun alohida buyurtmalar
   const ordersKey = "orders_" + id;
   const orders = JSON.parse(localStorage.getItem(ordersKey) || "[]");
 
