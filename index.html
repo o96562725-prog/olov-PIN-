@@ -428,6 +428,32 @@ button {
   const modal = document.createElement("div");
   modal.id = "profileModal";
 
+function profile() {
+  const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
+
+  if (!user) {
+    alert("❌ Telegram ma'lumotlari topilmadi.");
+    return;
+  }
+
+  const name = user.first_name || "Noma'lum";
+  const username = user.username ? "@" + user.username : "Username yo‘q";
+  const id = user.id;
+
+  // Har bir Telegram ID uchun alohida balans
+  const balanceKey = "balance_" + id;
+  const balance = Number(localStorage.getItem(balanceKey) || 0);
+
+  // Har bir Telegram ID uchun alohida buyurtmalar
+  const ordersKey = "orders_" + id;
+  const orders = JSON.parse(localStorage.getItem(ordersKey) || "[]");
+
+  const oldModal = document.getElementById("profileModal");
+  if (oldModal) oldModal.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "profileModal";
+
   modal.innerHTML = `
     <div style="
       position:fixed;
@@ -446,6 +472,7 @@ button {
         border-radius:24px;
         padding:24px;
         color:white;
+        box-sizing:border-box;
       ">
 
         <div style="
@@ -471,12 +498,23 @@ button {
           background:#182235;
           border-radius:18px;
           padding:18px;
-          line-height:1.8;
+          line-height:2;
         ">
           <div>👤 <b>Ism:</b> ${name}</div>
+
           <div>📱 <b>Username:</b> ${username}</div>
+
           <div>🆔 <b>Telegram ID:</b> ${id}</div>
-          <div>💰 <b>Balans:</b> 0 so‘m</div>
+
+          <div>
+            💰 <b>Balans:</b>
+            ${balance.toLocaleString("uz-UZ")} so‘m
+          </div>
+
+          <div>
+            🛒 <b>Buyurtmalar:</b>
+            ${orders.length} ta
+          </div>
         </div>
 
       </div>
