@@ -1,1064 +1,303 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<title>OLOV PIN</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-  *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-body{
-  background:#050b12;
-  color:white;
-  min-height:100vh;
-  padding-bottom:85px;
-}
+  <title>OLOV PIN</title>
 
-.header{
-  padding:20px;
-  text-align:center;
-  font-size:25px;
-  font-weight:bold;
-  border-bottom:1px solid #18222e;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-.brand{
-  padding:20px;
-  text-align:center;
-  font-size:23px;
-  font-weight:bold;
-  color:#72ff18;
-}
+    body {
+      background: #080b18;
+      color: white;
+      min-height: 100vh;
+      padding-bottom: 90px;
+    }
 
-.balance{
-  margin:15px;
-  padding:22px;
-  border-radius:22px;
-  background:linear-gradient(135deg,#111a26,#182b35);
-  border:1px solid #263747;
-  text-align:center;
-}
+    .header {
+      padding: 22px 20px 8px;
+      font-size: 25px;
+      font-weight: bold;
+    }
 
-.balance small{
-  color:#9aa8b8;
-  font-size:14px;
-  letter-spacing:2px;
-}
+    .brand {
+      padding: 8px 20px 20px;
+      color: #aeb3c7;
+      font-size: 16px;
+    }
 
-.money{
-  margin:8px 0 20px;
-  font-size:35px;
-  font-weight:bold;
-  color:#7cff19;
-}
+    .balance {
+      margin: 0 15px 18px;
+      padding: 20px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #11182a, #18233b);
+      border: 1px solid #29344d;
+    }
 
-.buttons{
-  display:flex;
-  gap:10px;
-}
+    .balance small {
+      color: #727b96;
+      font-size: 14px;
+      font-weight: bold;
+    }
 
-button{
-  border:0;
-  border-radius:15px;
-  padding:14px;
-  color:white;
-  background:#172231;
-  font-size:14px;
-  font-weight:bold;
-  flex:1;
-}
+    .money {
+      margin: 8px 0 16px;
+      font-size: 32px;
+      font-weight: bold;
+    }
 
-.green{
-  background:#72ff18;
-  color:#071006;
-}
+    button {
+      border: 0;
+      border-radius: 16px;
+      padding: 15px;
+      color: white;
+      background: #182235;
+      border: 1px solid #29344d;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.tabs{
-  display:flex;
-  gap:10px;
-  padding:10px 15px;
-}
+    .green {
+      width: 100%;
+      background: #7cff19;
+      color: #071006;
+    }
 
-.tab{
-  border:1px solid #23404a;
-  border-radius:25px;
-  padding:12px 20px;
-  color:#9caabd;
-  background:#0d151f;
-}
+    .actions {
+      display: flex;
+      gap: 10px;
+      padding: 0 15px;
+      margin-bottom: 20px;
+    }
 
-.tab.active{
-  color:#7cff19;
-  border-color:#72ff18;
-}
+    .actions button {
+      flex: 1;
+    }
 
-.search{
-  margin:10px 15px 18px;
-  padding:17px;
-  border-radius:16px;
-  background:#111a26;
-  color:#78879a;
-  border:1px solid #202c3b;
-}
+    .title {
+      padding: 0 15px 12px;
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-.games{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  padding:0 15px 90px;
-}
+    .games {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0 15px;
+    }
 
-.game{
-  background:#111a26;
-  border:1px solid #253242;
-  border-radius:16px;
-  overflow:hidden;
-  text-align:center;
-}
+    .game {
+      padding: 25px 10px;
+      text-align: center;
+      background: #11182a;
+      border: 1px solid #29344d;
+      border-radius: 18px;
+    }
 
-.game-icon{
-  height:115px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:50px;
-  background:linear-gradient(135deg,#172b38,#263c48);
-}
+    .game-icon {
+      font-size: 45px;
+      margin-bottom: 10px;
+    }
 
-  * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
+    .game-name {
+      font-size: 14px;
+      font-weight: bold;
+    }
 
-body {
-  background: #080b18;
-  color: white;
-  min-height: 100vh;
-  padding-bottom: 95px;
-}
+    .bottom {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      gap: 5px;
+      padding: 10px;
+      background: #10172a;
+      border-top: 1px solid #29344d;
+      z-index: 100;
+    }
 
-.header {
-  padding: 22px 20px 8px;
-  font-size: 25px;
-  font-weight: bold;
-  text-align: left;
-  color: white;
-}
-
-.brand {
-  padding: 8px 20px 18px;
-  font-size: 16px;
-  color: #aeb3c7;
-}
-
-.balance {
-  margin: 0 15px 18px;
-  padding: 20px;
-  border-radius: 25px;
-  background: linear-gradient(135deg, #11182a, #18233b);
-  border: 1px solid #29344d;
-}
-
-.balance small {
-  display: block;
-  color: #727b96;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.money {
-  font-size: 32px;
-  font-weight: bold;
-  color: white;
-  margin-bottom: 15px;
-}
-
-.buttons {
-  display: flex;
-  gap: 10px;
-  padding: 0 15px;
-}
-
-button {
-  border: 0;
-  border-radius: 16px;
-  padding: 15px;
-  color: white;
-  background: #11182a;
-  border: 1px solid #29344d;
-  font-size: 14px;
-  font-weight: bold;
-  flex: 1;
-}
-
-.green {
-  background: linear-gradient(135deg, #965cff, #7445e8);
-  border: 0;
-}
-
-.tabs {
-  display: flex;
-  gap: 10px;
-  padding: 18px 15px 10px;
-}
-
-.tab {
-  border: 1px solid #29344d;
-  border-radius: 18px;
-  padding: 14px 20px;
-  color: #8e96ae;
-  background: #10172a;
-}
-
-.tab.active {
-  color: #a56cff;
-  border-color: #8d5cff;
-}
-
-.search {
-  margin: 10px 15px 18px;
-  padding: 16px;
-  border-radius: 16px;
-  background: #11182a;
-  color: #8992ad;
-  border: 1px solid #29344d;
-}
-
-.games {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding: 0 15px 90px;
-}
-
-.game {
-  background: #11182a;
-  border: 1px solid #29344d;
-  border-radius: 18px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.game-icon {
-  height: 115px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  background: linear-gradient(135deg, #17223b, #291557);
-}
-
-.game-name {
-  padding: 13px 5px;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.bottom {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  background: #10172a;
-  border-top: 1px solid #29344d;
-  padding: 10px;
-  z-index: 10;
-  border-radius: 25px 25px 0 0;
-}
-
-.bottom button {
-  background: transparent;
-  border: 0;
-  color: #707990;
-  padding: 10px 5px;
-  font-size: 12px;
-}
-
-.bottom .selected {
-  color: #a56cff;
-}
-
-#message {
-  position: fixed;
-  top: 20px;
-  left: 15px;
-  right: 15px;
-  background: #171f35;
-  border: 1px solid #8b5cff;
-  border-radius: 15px;
-  padding: 15px;
-  text-align: center;
-  display: none;
-  z-index: 20;
-}
-</style>
+    .bottom button {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      padding: 8px 3px;
+      font-size: 12px;
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="message"></div>
-
-<div class="header">
-  👋 Salom
-</div>
-
-<div class="brand">
-  💎 OLOV PIN BOT
-</div>
-
-<div class="balance">
-  <small>BALANS</small>
-  <div class="money" id="balance">1 235 286 so‘m</div>
-
-  <div class="buttons">
-    <button class="green" onclick="topUp()">＋ To‘ldirish</button>
-  </div>
-</div>
-
-<div class="buttons">
-  <button onclick="orders()">🎟 Promokodlar</button>
-  <button onclick="support()">🎧 Yordam</button>
-</div>
-
-<div style="
-  margin:18px 15px;
-  padding:35px 15px;
-  border-radius:22px;
-  background:linear-gradient(135deg,#25104d,#6428c9,#171d45);
-  border:1px solid #49347a;
-  text-align:center;
-  font-size:23px;
-  font-weight:bold;
-">
-  🎮 O‘YINLAR UCHUN<br>
-  <span style="color:#b879ff;">MAXSUS TAKLIFLAR</span>
-</div>
-
-<div style="
-  padding:0 15px 12px;
-  font-size:22px;
-  font-weight:bold;
-">
-  Ommabop o‘yinlar
-</div>
-
-<div class="games">
-
-  <div class="game" onclick="game('PUBG Mobile')">
-    <div class="game-icon">🎯</div>
-    <div class="game-name">PUBG Mobile</div>
+  <div class="header">
+    👋 Salom
   </div>
 
-  <div class="game" onclick="game('Free Fire')">
-    <div class="game-icon">🔥</div>
-    <div class="game-name">Free Fire</div>
+  <div class="brand">
+    💎 OLOV PIN BOT
   </div>
 
-  <div class="game" onclick="game('Mobile Legends')">
-    <div class="game-icon">⚔️</div>
-    <div class="game-name">Mobile Legends</div>
+  <div class="balance">
+    <small>BALANS</small>
+
+    <div class="money" id="balance">
+      0 so‘m
+    </div>
+
+    <button class="green" onclick="topUp()">
+      ＋ To‘ldirish
+    </button>
   </div>
 
-  <div class="game" onclick="game('Brawl Stars')">
-    <div class="game-icon">⭐</div>
-    <div class="game-name">Brawl Stars</div>
+  <div class="actions">
+    <button onclick="orders()">
+      🎟 Promokodlar
+    </button>
+
+    <button onclick="support()">
+      🎧 Yordam
+    </button>
   </div>
 
-  <div class="game" onclick="game('Standoff 2')">
-    <div class="game-icon">🎮</div>
-    <div class="game-name">Standoff 2</div>
+  <div class="title">
+    Ommabop o‘yinlar
   </div>
 
-  <div class="game" onclick="game('Clash of Clans')">
-    <div class="game-icon">🏰</div>
-    <div class="game-name">Clash of Clans</div>
+  <div class="games">
+
+    <div class="game" onclick="game('PUBG Mobile')">
+      <div class="game-icon">🎯</div>
+      <div class="game-name">PUBG Mobile</div>
+    </div>
+
+    <div class="game" onclick="game('Free Fire')">
+      <div class="game-icon">🔥</div>
+      <div class="game-name">Free Fire</div>
+    </div>
+
+    <div class="game" onclick="game('Mobile Legends')">
+      <div class="game-icon">⚔️</div>
+      <div class="game-name">Mobile Legends</div>
+    </div>
+
+    <div class="game" onclick="game('Brawl Stars')">
+      <div class="game-icon">⭐</div>
+      <div class="game-name">Brawl Stars</div>
+    </div>
+
+    <div class="game" onclick="game('Standoff 2')">
+      <div class="game-icon">🎮</div>
+      <div class="game-name">Standoff 2</div>
+    </div>
+
+    <div class="game" onclick="game('Clash of Clans')">
+      <div class="game-icon">🏰</div>
+      <div class="game-name">Clash of Clans</div>
+    </div>
+
   </div>
 
-</div>
+  <div class="bottom">
 
-<div class="bottom">
+    <button onclick="home()">
+      🏠<br>Bosh sahifa
+    </button>
 
-  <button class="selected" onclick="home()">
-    🏠<br>Bosh sahifa
-  </button>
+    <button onclick="orders()">
+      🎮<br>Buyurtma
+    </button>
 
-  <button onclick="orders()">
-    🎮<br>Buyurtma
-  </button>
+    <button onclick="topUp()">
+      💳<br>To‘ldirish
+    </button>
 
-  <button onclick="topUp()">
-    💳<br>To‘ldirish
-  </button>
+    <button onclick="orders()">
+      🕐<br>Buyurtmalar
+    </button>
 
-  <button onclick="orders()">
-    🕐<br>Buyurtmalar
-  </button>
+    <button onclick="profile()">
+      👤<br>Profil
+    </button>
 
-  <button onclick="profile()">
-    👤<br>Profil
-  </button>
+  </div>
 
-</div>
 
 <script>
 
-  const oldModal = document.getElementById("profileModal");
-  if (oldModal) oldModal.remove();
+function home() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
 
-  const modal = document.createElement("div");
-  modal.id = "profileModal";
+
+function topUp() {
+  alert("💳 To‘lov bo‘limi tez orada.");
+}
+
+
+function orders() {
+  alert("📋 Buyurtmalar bo‘limi tez orada.");
+}
+
+
+function support() {
+  window.open(
+    "https://t.me/zefrix_admiral",
+    "_blank"
+  );
+}
+
 
 function profile() {
-  const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
+  const tg = window.Telegram?.WebApp;
 
-  if (!user) {
+  if (!tg) {
     alert("❌ Telegram ma'lumotlari topilmadi.");
     return;
   }
 
-  const name = user.first_name || "Noma'lum";
-  const username = user.username ? "@" + user.username : "Username yo‘q";
-  const id = user.id;
+  tg.ready();
 
-  const balanceKey = "balance_" + id;
-  const balance = Number(localStorage.getItem(balanceKey) || 0);
+  const user = tg.initDataUnsafe?.user;
 
-  const ordersKey = "orders_" + id;
-  const orders = JSON.parse(localStorage.getItem(ordersKey) || "[]");
-
-  const oldModal = document.getElementById("profileModal");
-  if (oldModal) oldModal.remove();
-
-  const modal = document.createElement("div");
-  modal.id = "profileModal";
-
-  modal.innerHTML = `
-    <div style="
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.75);
-      z-index:10000;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-    ">
-      <div style="
-        width:100%;
-        max-width:380px;
-        background:#111827;
-        border-radius:24px;
-        padding:24px;
-        color:white;
-        box-sizing:border-box;
-      ">
-
-        <div style="
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-          margin-bottom:20px;
-        ">
-          <h2 style="margin:0;">👤 PROFIL</h2>
-
-          <button onclick="document.getElementById('profileModal').remove()" style="
-            border:0;
-            background:#263244;
-            color:white;
-            width:40px;
-            height:40px;
-            border-radius:12px;
-            font-size:20px;
-          ">×</button>
-        </div>
-
-        <div style="
-          background:#182235;
-          border-radius:18px;
-          padding:18px;
-          line-height:2;
-        ">
-          <div>👤 <b>Ism:</b> ${name}</div>
-
-          <div>📱 <b>Username:</b> ${username}</div>
-
-          <div>🆔 <b>Telegram ID:</b> ${id}</div>
-
-          <div>
-            💰 <b>Balans:</b>
-            ${balance.toLocaleString("uz-UZ")} so‘m
-          </div>
-
-          <div>
-            🛒 <b>Buyurtmalar:</b>
-            ${orders.length} ta
-          </div>
-        </div>
-
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-  }
-function topUp() {
-
-
-  const modal = document.getElementById("paymentModal");
-
-  if (!modal) {
-    alert("❌ To‘lov oynasi topilmadi.");
-    return;
-  }
-
-  modal.style.display = "flex";
-}
-
-function closePaymentModal() {
-  const modal = document.getElementById("paymentModal");
-
-  if (modal) {
-    modal.style.display = "none";
-  }
-}
-
-function selectPayment(method) {
-  const oldModal = document.getElementById("amountModal");
-  if (oldModal) oldModal.remove();
-
-  const modal = document.createElement("div");
-  modal.id = "amountModal";
-
-  modal.innerHTML = `
-    <div style="
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.75);
-      z-index:10000;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-    ">
-      <div style="
-        width:100%;
-        max-width:380px;
-        background:#111827;
-        border-radius:24px;
-        padding:22px;
-        color:white;
-        box-sizing:border-box;
-      ">
-
-        <div style="
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-          margin-bottom:20px;
-        ">
-          <h2 style="margin:0;font-size:24px;">
-            💳 ${method}
-          </h2>
-
-          <button onclick="document.getElementById('amountModal').remove()" style="
-            border:0;
-            background:#263244;
-            color:white;
-            width:40px;
-            height:40px;
-            border-radius:12px;
-            font-size:20px;
-          ">×</button>
-        </div>
-
-        <p style="
-          color:#9ca3af;
-          margin-bottom:10px;
-          font-size:16px;
-        ">
-          Summani kiriting
-        </p>
-
-        <div style="
-          background:#182235;
-          border:1px solid #303b52;
-          border-radius:18px;
-          padding:16px;
-          display:flex;
-          align-items:center;
-          margin-bottom:16px;
-        ">
-          <input
-            id="amountInput"
-            type="number"
-            min="1000"
-            placeholder="0"
-            style="
-              width:100%;
-              border:0;
-              outline:0;
-              background:transparent;
-              color:white;
-              font-size:30px;
-            "
-          >
-          <span style="
-            color:#9ca3af;
-            font-size:17px;
-          ">so‘m</span>
-        </div>
-
-        <div style="
-          display:grid;
-          grid-template-columns:1fr 1fr;
-          gap:10px;
-          margin-bottom:20px;
-        ">
-          <button onclick="setAmount(50000)" style="
-            padding:15px;
-            border:0;
-            border-radius:14px;
-            background:#1d2939;
-            color:white;
-            font-size:16px;
-            font-weight:bold;
-          ">50k</button>
-
-          <button onclick="setAmount(100000)" style="
-            padding:15px;
-            border:0;
-            border-radius:14px;
-            background:#1d2939;
-            color:white;
-            font-size:16px;
-            font-weight:bold;
-          ">100k</button>
-
-          <button onclick="setAmount(200000)" style="
-            padding:15px;
-            border:0;
-            border-radius:14px;
-            background:#1d2939;
-            color:white;
-            font-size:16px;
-            font-weight:bold;
-          ">200k</button>
-
-          <button onclick="setAmount(500000)" style="
-            padding:15px;
-            border:0;
-            border-radius:14px;
-            background:#1d2939;
-            color:white;
-            font-size:16px;
-            font-weight:bold;
-          ">500k</button>
-        </div>
-
-        <button onclick="continuePayment('${method}')" style="
-          width:100%;
-          padding:17px;
-          border:0;
-          border-radius:16px;
-          background:#263b63;
-          color:white;
-          font-size:17px;
-          font-weight:bold;
-        ">
-          Summani kiriting
-        </button>
-
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-}
-
- function continuePayment(method) {
-  const amount = Number(document.getElementById("amountInput").value);
-
-  if (!amount || amount < 1000) {
-    alert("❌ Summani to‘g‘ri kiriting.");
+  if (!user) {
+    alert("❌ Telegram foydalanuvchisi topilmadi.");
     return;
   }
 
   alert(
-    "💳 TO‘LOV QILISH\n\n" +
-    "💳 Usul: " + method + "\n" +
-    "💰 Summa: " + amount.toLocaleString("uz-UZ") + " so‘m"
+    "👤 PROFIL\n\n" +
+    "Ism: " + (user.first_name || "Noma'lum") + "\n" +
+    "Username: " +
+    (user.username ? "@" + user.username : "Yo‘q") +
+    "\nID: " + user.id
   );
 }
 
-function orders() {
-  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
-  if (orders.length === 0) {
-    alert("📋 Buyurtmalar\n\n❌ Hozircha buyurtmalar mavjud emas.");
-    return;
-  }
 
-  let text = "📋 BUYURTMALAR\n\n";
+function game(name) {
 
-  orders.forEach((order, index) => {
-    text += `🛒 Buyurtma #${index + 1}\n`;
-    text += `🎮 ${order.game || "Noma'lum"}\n`;
-    text += `📌 Holati: ${order.status || "Tekshirilmoqda"}\n\n`;
-  });
+  alert(
+    "🎮 " + name +
+    "\n\nBu o‘yin bo‘limini keyingi bosqichda qo‘shamiz."
+  );
 
-  alert(text);
-}
-function support() {
-  window.open("https://t.me/zefrix_admiral", "_blank");
 }
 
+</script>
 
-function home() {
-  window.scrollTo({top: 0, behavior: "smooth"});
-}
-
-  let box = document.createElement("div");
-
-    box.style.position = "fixed";
-    box.style.inset = "0";
-    box.style.background = "#080b18";
-    box.style.color = "white";
-    box.style.zIndex = "9999";
-    box.style.padding = "25px 15px";
-    box.style.overflowY = "auto";
-    box.style.boxSizing = "border-box";
-
-    box.innerHTML = `
-      <button onclick="this.parentElement.remove()"
-        style="
-          padding:10px 18px;
-          border-radius:14px;
-          border:0;
-          background:#18233b;
-          color:white;
-          font-size:16px;
-        ">
-        ← Orqaga
-      </button>
-
-      <h1 style="margin:25px 0 8px;font-size:28px;">
-        🎮 PUBG Mobile
-      </h1>
-
-      <p style="color:#9aa8b8;margin-bottom:25px;">
-        🪙 UC Paketni tanlang
-      </p>
-
-      <div id="pubgPackages"
-        style="
-          display:grid;
-          grid-template-columns:repeat(2,1fr);
-          gap:12px;
-        ">
-      </div>
-    `;
-
-    document.body.appendChild(box);
-
-    const list = box.querySelector("#pubgPackages");
-
-    packages.forEach((p) => {
-
-      const card = document.createElement("button");
-
-      card.style.background = "#111a26";
-      card.style.border = "1px solid #29344d";
-      card.style.borderRadius = "18px";
-      card.style.padding = "20px 10px";
-      card.style.color = "white";
-      card.style.minHeight = "120px";
-      card.style.cursor = "pointer";
-
-      card.innerHTML = `
-        <div style="font-size:30px;">🪙</div>
-
-        <div style="
-          font-size:20px;
-          font-weight:bold;
-          margin-top:8px;
-        ">
-          ${p.uc} UC
-        </div>
-
-        <div style="
-          font-size:15px;
-          color:#aeb3c7;
-          margin-top:7px;
-        ">
-          ${p.price} so'm
-        </div>
-      `;
-
-      card.onclick = function() {
-
-        const playerId = prompt(
-          "🎮 PUBG Mobile\n\n" +
-          "🪙 " + p.uc + " UC\n" +
-          "💰 " + p.price + " so'm\n\n" +
-          "👤 Player ID raqamingizni kiriting:"
-        );
-
-        if (!playerId) {
-          alert("❌ Player ID kiritilmadi.");
-          return;
-        }
-
-        alert(
-          "✅ Paket tanlandi!\n\n" +
-          "🪙 " + p.uc + " UC\n" +
-          "💰 " + p.price + " so'm\n" +
-          "👤 ID: " + playerId
-        );
-      };
-
-      list.appendChild(card);
-    });
-
-    return;
-  }
-
-
-  // =========================
-  // 🔥 FREE FIRE
-  // =========================
-  if (name === "Free Fire") {
-
-    const packages = [
-      { diamond: 110,  price: "10 200" },
-      { diamond: 220,  price: "20 400" },
-      { diamond: 341,  price: "32 000" },
-      { diamond: 572,  price: "53 000" },
-      { diamond: 1166, price: "103 600" },
-      { diamond: 2164, price: "210 000" },
-      { diamond: 6160, price: "555 000" }
-    ];
-
-    let box = document.createElement("div");
-
-    box.style.position = "fixed";
-    box.style.inset = "0";
-    box.style.background = "#080b18";
-    box.style.color = "white";
-    box.style.zIndex = "9999";
-    box.style.padding = "25px 15px";
-    box.style.overflowY = "auto";
-    box.style.boxSizing = "border-box";
-
-    box.innerHTML = `
-      <button onclick="this.parentElement.remove()"
-        style="
-          padding:10px 18px;
-          border-radius:14px;
-          border:0;
-          background:#18233b;
-          color:white;
-          font-size:16px;
-        ">
-        ← Orqaga
-      </button>
-
-      <h1 style="
-        margin:25px 0 8px;
-        font-size:28px;
-      ">
-        🔥 Free Fire
-      </h1>
-
-      <p style="
-        color:#9aa8b8;
-        margin-bottom:25px;
-      ">
-        💎 Diamond paketini tanlang
-      </p>
-
-      <div id="freeFirePackages"
-        style="
-          display:grid;
-          grid-template-columns:repeat(2,1fr);
-          gap:12px;
-        ">
-      </div>
-    `;
-
-    document.body.appendChild(box);
-
-    const list = box.querySelector("#freeFirePackages");
-
-    packages.forEach((p) => {
-
-      const card = document.createElement("button");
-
-      card.style.background = "#111a26";
-      card.style.border = "1px solid #29344d";
-      card.style.borderRadius = "18px";
-      card.style.padding = "20px 10px";
-      card.style.color = "white";
-      card.style.minHeight = "120px";
-      card.style.cursor = "pointer";
-
-      card.innerHTML = `
-        <div style="font-size:30px;">💎</div>
-
-        <div style="
-          font-size:20px;
-          font-weight:bold;
-          margin-top:8px;
-        ">
-          ${p.diamond.toLocaleString("uz-UZ")} 💎
-        </div>
-
-        <div style="
-          font-size:15px;
-          color:#aeb3c7;
-          margin-top:7px;
-        ">
-          ${p.price} so'm
-        </div>
-      `;
-
-      card.onclick = function() {
-
-        const playerId = prompt(
-          "🔥 Free Fire\n\n" +
-          "💎 " +
-          p.diamond.toLocaleString("uz-UZ") +
-          " Diamond\n" +
-          "💰 " + p.price + " so'm\n\n" +
-          "👤 Player ID raqamingizni kiriting:"
-        );
-
-        if (!playerId) {
-          alert("❌ Player ID kiritilmadi.");
-          return;
-        }
-
-        alert(
-          "✅ Paket tanlandi!\n\n" +
-          "💎 " +
-          p.diamond.toLocaleString("uz-UZ") +
-          " Diamond\n" +
-          "💰 " + p.price + " so'm\n" +
-          "👤 ID: " + playerId
-        );
-      };
-
-      list.appendChild(card);
-    });
-
-
-<div id="paymentModal" style="
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.75);
-  z-index:10000;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-">
-  <div style="
-    width:100%;
-    max-width:380px;
-    background:#111827;
-    border-radius:24px;
-    padding:22px;
-    color:white;
-    box-sizing:border-box;
-  ">
-
-    <div style="
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:20px;
-    ">
-      <h2 style="margin:0;">💳 Hisob to‘ldirish</h2>
-
-      <button onclick="closePaymentModal()" style="
-        border:0;
-        background:#263244;
-        color:white;
-        width:40px;
-        height:40px;
-        border-radius:12px;
-        font-size:20px;
-      ">✕</button>
-    </div>
-
-    <p style="color:#9ca3af;margin-bottom:18px;">
-      To‘lov usulini tanlang
-    </p>
-
-    <div style="
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    ">
-
-      <button onclick="selectPayment('HUMO')" style="
-        padding:22px 10px;
-        border:0;
-        border-radius:18px;
-        background:#1d2939;
-        color:white;
-        font-size:17px;
-        font-weight:bold;
-      ">
-        💳<br>HUMO
-      </button>
-
-      <button onclick="selectPayment('UzCard')" style="
-        padding:22px 10px;
-        border:0;
-        border-radius:18px;
-        background:#1d2939;
-        color:white;
-        font-size:17px;
-        font-weight:bold;
-      ">
-        💳<br>UzCard
-      </button>
-
-      <button onclick="selectPayment('VISA')" style="
-        padding:22px 10px;
-        border:0;
-        border-radius:18px;
-        background:#1d2939;
-        color:white;
-        font-size:17px;
-        font-weight:bold;
-      ">
-        💳<br>VISA
-      </button>
-
-      <button onclick="selectPayment('Bankomat')" style="
-        padding:22px 10px;
-        border:0;
-        border-radius:18px;
-        background:#1d2939;
-        color:white;
-        font-size:17px;
-        font-weight:bold;
-      ">
-        🏦<br>Bankomat
-      </button>
-
-    </div>
-  </div>
-</div>
 </body>
 </html>
