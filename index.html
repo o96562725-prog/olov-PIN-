@@ -244,11 +244,178 @@ function home() {
   });
 }
 
+  function topUp() {
 
-function topUp() {
-  alert("💳 To‘lov bo‘limi tez orada.");
+  const oldModal = document.getElementById("paymentModal");
+  if (oldModal) oldModal.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "paymentModal";
+
+  modal.innerHTML = `
+    <div style="
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      z-index:10000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    ">
+
+      <div style="
+        width:100%;
+        max-width:420px;
+        background:#11182a;
+        border:1px solid #29344d;
+        border-radius:24px;
+        padding:22px;
+      ">
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          margin-bottom:20px;
+        ">
+
+          <div style="
+            font-size:22px;
+            font-weight:bold;
+          ">
+            💳 Hisob to‘ldirish
+          </div>
+
+          <button
+            onclick="closePaymentModal()"
+            style="
+              width:40px;
+              height:40px;
+              padding:0;
+              border-radius:12px;
+              font-size:20px;
+            "
+          >
+            ✕
+          </button>
+
+        </div>
+
+        <div style="
+          color:#9aa8b8;
+          font-size:14px;
+          margin-bottom:15px;
+        ">
+          💰 To‘lov usulini tanlang
+        </div>
+
+        <div style="
+          display:flex;
+          flex-direction:column;
+          gap:12px;
+        ">
+
+          <button
+            onclick="selectPayment('HUMO')"
+            style="
+              width:100%;
+              padding:20px;
+              text-align:left;
+              font-size:16px;
+              background:#182235;
+              border:1px solid #29344d;
+            "
+          >
+            💳 HUMO
+            <span style="
+              float:right;
+              color:#7cff19;
+            ">›</span>
+          </button>
+
+          <button
+            onclick="selectPayment('UZCARD')"
+            style="
+              width:100%;
+              padding:20px;
+              text-align:left;
+              font-size:16px;
+              background:#182235;
+              border:1px solid #29344d;
+            "
+          >
+            💳 UZCARD
+            <span style="
+              float:right;
+              color:#7cff19;
+            ">›</span>
+          </button>
+
+          <button
+            onclick="selectPayment('VISA')"
+            style="
+              width:100%;
+              padding:20px;
+              text-align:left;
+              font-size:16px;
+              background:#182235;
+              border:1px solid #29344d;
+            "
+          >
+            💳 VISA
+            <span style="
+              float:right;
+              color:#7cff19;
+            ">›</span>
+          </button>
+
+          <button
+            onclick="selectPayment('BANKOMAT')"
+            style="
+              width:100%;
+              padding:20px;
+              text-align:left;
+              font-size:16px;
+              background:#182235;
+              border:1px solid #29344d;
+            "
+          >
+            🏦 BANKOMAT
+            <span style="
+              float:right;
+              color:#7cff19;
+            ">›</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
 }
 
+
+function closePaymentModal() {
+  const modal = document.getElementById("paymentModal");
+
+  if (modal) {
+    modal.remove();
+  }
+}
+
+
+function selectPayment(method) {
+
+  alert(
+    "💳 " + method +
+    "\n\nBu to‘lov usulini keyingi bosqichda ulaymiz."
+  );
+
+}
 
 function orders() {
   alert("📋 Buyurtmalar bo‘limi tez orada.");
