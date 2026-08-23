@@ -395,8 +395,6 @@ function home() {
 
   document.body.appendChild(modal);
 }
-
-
 function closePaymentModal() {
   const modal = document.getElementById("paymentModal");
 
@@ -404,26 +402,13 @@ function closePaymentModal() {
     modal.remove();
   }
 }
+  function selectPayment(method) {
 
-
-function continuePayment(method) {
-
-  const input = document.getElementById("amountInput");
-  const amount = input.value.trim();
-
-  if (!amount) {
-    alert("❌ Summani kiriting.");
-    return;
-  }
-
-  const oldModal = document.getElementById("amountModal");
-
-  if (oldModal) {
-    oldModal.remove();
-  }
+  const oldModal = document.getElementById("paymentModal");
+  if (oldModal) oldModal.remove();
 
   const modal = document.createElement("div");
-  modal.id = "cardPaymentModal";
+  modal.id = "amountModal";
 
   modal.innerHTML = `
     <div style="
@@ -440,102 +425,93 @@ function continuePayment(method) {
       <div style="
         width:100%;
         max-width:400px;
-        background:#182235;
+        background:#11182a;
         border:1px solid #29344d;
-        border-radius:18px;
-        padding:25px;
+        border-radius:24px;
+        padding:22px;
         box-sizing:border-box;
-        text-align:center;
       ">
 
         <div style="
-          font-size:22px;
-          font-weight:bold;
-          margin-bottom:20px;
-        ">
-          💳 TO‘LOV
-        </div>
-
-        <div style="
-          color:#9aa8b8;
-          font-size:15px;
-          margin-bottom:8px;
-        ">
-          ${method}
-        </div>
-
-        <div style="
-          color:#9aa8b8;
-          margin-bottom:18px;
-        ">
-          To‘lov summasi
-        </div>
-
-        <div style="
-          font-size:25px;
-          font-weight:bold;
-          color:#7cff19;
-          margin-bottom:25px;
-        ">
-          ${Number(amount).toLocaleString("uz-UZ")} so‘m
-        </div>
-
-        <div style="
-          background:#101827;
-          border:1px solid #29344d;
-          border-radius:14px;
-          padding:18px;
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
           margin-bottom:20px;
         ">
 
           <div style="
-            color:#9aa8b8;
-            font-size:14px;
-            margin-bottom:8px;
-          ">
-            💳 Karta raqami
-          </div>
-
-          <div style="
-            font-size:20px;
+            font-size:21px;
             font-weight:bold;
-            letter-spacing:1px;
           ">
-            8600 **** **** 1234
+            💳 ${method}
           </div>
+
+          <button
+            onclick="document.getElementById('amountModal').remove()"
+            style="
+              width:40px;
+              height:40px;
+              padding:0;
+              border-radius:12px;
+              font-size:20px;
+            "
+          >
+            ✕
+          </button>
 
         </div>
 
-        <button
-          onclick="copyMyCard()"
+        <div style="
+          color:#9aa8b8;
+          margin-bottom:10px;
+        ">
+          💰 Summani kiriting
+        </div>
+
+        <input
+          id="amountInput"
+          type="number"
+          placeholder="Masalan: 50000"
           style="
             width:100%;
-            padding:15px;
-            border:0;
+            box-sizing:border-box;
+            padding:16px;
             border-radius:12px;
-            background:#7cff19;
-            color:#101827;
-            font-size:17px;
-            font-weight:bold;
+            border:1px solid #29344d;
+            background:#182235;
+            color:white;
+            font-size:18px;
+            outline:none;
+            margin-bottom:15px;
           "
         >
-          📋 Karta raqamini nusxalash
+
+        <button
+          onclick="document.getElementById('amountInput').value='50000'"
+          style="width:100%;padding:12px;margin-bottom:8px;"
+        >
+          10 000 so‘m
         </button>
 
         <button
-          onclick="document.getElementById('cardPaymentModal').remove()"
-          style="
-            width:100%;
-            margin-top:10px;
-            padding:13px;
-            border:1px solid #29344d;
-            border-radius:12px;
-            background:transparent;
-            color:#9aa8b8;
-            font-size:16px;
-          "
+          onclick="document.getElementById('amountInput').value='100000'"
+          style="width:100%;padding:12px;margin-bottom:8px;"
         >
-          Bekor qilish
+          100 000 so‘m
+        </button>
+
+        <button
+          onclick="document.getElementById('amountInput').value='200000'"
+          style="width:100%;padding:12px;margin-bottom:8px;"
+        >
+          200 000 so‘m
+        </button>
+
+        <button
+          onclick="document.getElementById('amountInput').value='500000'"
+          style="width:100%;padding:12px;margin-bottom:15px;"
+        >
+          500 000 so‘m
         </button>
 
       </div>
@@ -543,9 +519,7 @@ function continuePayment(method) {
   `;
 
   document.body.appendChild(modal);
-}
-
-
+  }
 function copyMyCard() {
 
   const cardNumber = "5614686816308491";
