@@ -408,7 +408,15 @@ function closePaymentModal() {
 }
 
 
-function selectPayment(method) {
+function continuePayment(method) {
+
+  const input = document.getElementById("amountInput");
+  const amount = input.value.trim();
+
+  if (!amount) {
+    alert("❌ Summani kiriting.");
+    return;
+  }
 
   const oldModal = document.getElementById("amountModal");
 
@@ -417,7 +425,7 @@ function selectPayment(method) {
   }
 
   const modal = document.createElement("div");
-  modal.id = "amountModal";
+  modal.id = "cardPaymentModal";
 
   modal.innerHTML = `
     <div style="
@@ -439,49 +447,71 @@ function selectPayment(method) {
         border-radius:18px;
         padding:25px;
         box-sizing:border-box;
+        text-align:center;
       ">
 
         <div style="
-          font-size:20px;
+          font-size:22px;
           font-weight:bold;
           margin-bottom:20px;
-          text-align:center;
         ">
-          💳 ${method}
+          💳 TO‘LOV
         </div>
 
         <div style="
           color:#9aa8b8;
+          font-size:15px;
           margin-bottom:8px;
         ">
-          Summani kiriting
+          ${method}
         </div>
 
-        <input
-          id="amountInput"
-          type="text"
-          inputmode="numeric"
-          pattern="[0-9]*"
-          placeholder="Masalan: 50000"
-          oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-          style="
-            width:100%;
-            padding:15px;
-            box-sizing:border-box;
-            background:#101827;
-            color:white;
-            border:1px solid #29344d;
-            border-radius:12px;
-            font-size:18px;
-            outline:none;
-          "
-        >
+        <div style="
+          color:#9aa8b8;
+          margin-bottom:18px;
+        ">
+          To‘lov summasi
+        </div>
+
+        <div style="
+          font-size:25px;
+          font-weight:bold;
+          color:#7cff19;
+          margin-bottom:25px;
+        ">
+          ${Number(amount).toLocaleString("uz-UZ")} so‘m
+        </div>
+
+        <div style="
+          background:#101827;
+          border:1px solid #29344d;
+          border-radius:14px;
+          padding:18px;
+          margin-bottom:20px;
+        ">
+
+          <div style="
+            color:#9aa8b8;
+            font-size:14px;
+            margin-bottom:8px;
+          ">
+            💳 Karta raqami
+          </div>
+
+          <div style="
+            font-size:20px;
+            font-weight:bold;
+            letter-spacing:1px;
+          ">
+            8600 **** **** 1234
+          </div>
+
+        </div>
 
         <button
-          onclick="continuePayment('${method}')"
+          onclick="copyMyCard()"
           style="
             width:100%;
-            margin-top:15px;
             padding:15px;
             border:0;
             border-radius:12px;
@@ -491,11 +521,11 @@ function selectPayment(method) {
             font-weight:bold;
           "
         >
-          Davom etish →
+          📋 Karta raqamini nusxalash
         </button>
 
         <button
-          onclick="document.getElementById('amountModal').remove()"
+          onclick="document.getElementById('cardPaymentModal').remove()"
           style="
             width:100%;
             margin-top:10px;
@@ -518,69 +548,15 @@ function selectPayment(method) {
 }
 
 
-function continuePayment(method) {
+function copyMyCard() {
 
-  const input = document.getElementById("amountInput");
-  const amount = input.value.trim();
+  const cardNumber = "5614686816308491";
 
-  if (!amount) {
-    alert("❌ Summani kiriting.");
-    return;
-  }
-
-  alert(
-    "💳 " + method +
-    "\n\n💰 Summa: " + amount + " so‘m"
-  );
-
-}
-
-function orders() {
-  alert("📋 Buyurtmalar bo‘limi tez orada.");
-}
-
-
-function support() {
-  window.open(
-    "https://t.me/zefrix_admiral",
-    "_blank"
-  );
-}
-
-
-function profile() {
-  const tg = window.Telegram?.WebApp;
-
-  if (!tg) {
-    alert("❌ Telegram ma'lumotlari topilmadi.");
-    return;
-  }
-
-  tg.ready();
-
-  const user = tg.initDataUnsafe?.user;
-
-  if (!user) {
-    alert("❌ Telegram foydalanuvchisi topilmadi.");
-    return;
-  }
-
-  alert(
-    "👤 PROFIL\n\n" +
-    "Ism: " + (user.first_name || "Noma'lum") + "\n" +
-    "Username: " +
-    (user.username ? "@" + user.username : "Yo‘q") +
-    "\nID: " + user.id
-  );
-}
-
-
-function game(name) {
-
-  alert(
-    "🎮 " + name +
-    "\n\nBu o‘yin bo‘limini keyingi bosqichda qo‘shamiz."
-  );
+  navigator.clipboard.writeText(cardNumber).then(() => {
+    alert("✅ Karta raqami nusxalandi!");
+  }).catch(() => {
+    alert("📋 Karta raqami: " + cardNumber);
+  });
 
 }
 
