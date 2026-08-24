@@ -553,31 +553,162 @@ function closePaymentModal() {
   }
 function copyMyCard() {
 
-  const cardNumber = "5614686816308491";
+  function openFreeFire() {
 
-  navigator.clipboard.writeText(cardNumber).then(() => {
-    alert("✅ Karta raqami nusxalandi!");
-  }).catch(() => {
-    alert("📋 Karta raqami: " + cardNumber);
-  });
+  const oldModal = document.getElementById("freeFireModal");
+  if (oldModal) oldModal.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "freeFireModal";
+
+  modal.innerHTML = `
+    <div style="
+      position:fixed;
+      inset:0;
+      background:#080b18;
+      z-index:10000;
+      overflow-y:auto;
+      padding-bottom:90px;
+    ">
+
+      <div style="
+        padding:20px;
+        display:flex;
+        align-items:center;
+        gap:15px;
+        background:#10172a;
+        border-bottom:1px solid #29344d;
+      ">
+
+        <button
+          onclick="document.getElementById('freeFireModal').remove()"
+          style="
+            width:45px;
+            height:45px;
+            padding:0;
+            border-radius:14px;
+            font-size:25px;
+          "
+        >
+          ‹
+        </button>
+
+        <div style="
+          font-size:22px;
+          font-weight:bold;
+        ">
+          Free Fire (CIS)
+        </div>
+
+      </div>
+
+      <div style="padding:20px 15px;">
+
+        <div style="
+          display:flex;
+          gap:10px;
+          margin-bottom:25px;
+        ">
+
+          <button style="
+            flex:1;
+            background:#8b4dff;
+            border:none;
+            padding:16px;
+            border-radius:18px;
+            font-size:16px;
+          ">
+            💎 Diamonds
+          </button>
+
+          <button style="
+            flex:1;
+            padding:16px;
+            border-radius:18px;
+            font-size:16px;
+          ">
+            📦 Pacs
+          </button>
+
+        </div>
+
+        <div style="
+          font-size:22px;
+          font-weight:bold;
+          margin-bottom:15px;
+        ">
+          Paketni tanlang
+        </div>
+
+        <div style="
+          display:grid;
+          grid-template-columns:repeat(2,1fr);
+          gap:12px;
+        ">
+
+          ${freeFirePackage("110 Diamonds","10 100")}
+          ${freeFirePackage("341 Diamonds","30 600")}
+          ${freeFirePackage("572 Diamonds","49 600")}
+          ${freeFirePackage("1166 Diamonds","99 500")}
+          ${freeFirePackage("2398 Diamonds","198 000")}
+          ${freeFirePackage("6160 Diamonds","500 000")}
+
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+
+function freeFirePackage(name, price) {
+
+  return `
+    <button
+      onclick="selectFreeFirePackage('${name}','${price}')"
+      style="
+        padding:18px 10px;
+        min-height:120px;
+        background:#11182a;
+        border:1px solid #29344d;
+        border-radius:18px;
+        text-align:center;
+      "
+    >
+
+      <div style="
+        font-size:18px;
+        font-weight:bold;
+        margin-bottom:12px;
+      ">
+        💎 ${name}
+      </div>
+
+      <div style="
+        color:#7cff19;
+        font-size:18px;
+        font-weight:bold;
+      ">
+        ${price} so‘m
+      </div>
+
+    </button>
+  `;
+}
+
+
+function selectFreeFirePackage(name, price) {
+
+  alert(
+    "🔥 Free Fire\n\n" +
+    "💎 Paket: " + name +
+    "\n💰 Narx: " + price + " so‘m"
+  );
 
 }
-  function orders() {
-  alert("📋 Buyurtmalar bo‘limi");
-}
-
-function support() {
-  alert("🎧 Yordam bo‘limi");
-}
-
-function game(name) {
-  alert("🎮 " + name + " tanlandi");
-}
-
-function profile() {
-  alert("👤 Profil bo‘limi");
-}
-
+  
 </script>
 
 </body>
