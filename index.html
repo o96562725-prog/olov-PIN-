@@ -176,7 +176,7 @@
 
   <div class="games">
 
-    <div class="game" onclick="game('PUBG Mobile')">
+    <div class="game" onclick="openPUBG()">
       <div class="game-icon">UC</div>
       <div class="game-name">PUBG Mobile</div>
     </div>
@@ -552,7 +552,10 @@ function closePaymentModal() {
   );
   }
 
-
+function openPUBG() {
+  alert("🎮 PUBG Mobile");
+}
+  
   function openFreeFire() {
 
   const oldModal = document.getElementById("freeFireModal");
