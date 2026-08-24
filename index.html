@@ -513,12 +513,43 @@ function closePaymentModal() {
         >
           500 000 so‘m
         </button>
-
+<button
+  onclick="continuePayment('${method}')"
+  style="
+    width:100%;
+    padding:16px;
+    margin-top:5px;
+    border:none;
+    border-radius:12px;
+    background:#7cff19;
+    color:#000;
+    font-size:17px;
+    font-weight:bold;
+  "
+>
+  ➡️ Davom etish
+</button>
       </div>
     </div>
   `;
 
   document.body.appendChild(modal);
+  }
+
+  function continuePayment(method) {
+
+  const input = document.getElementById("amountInput");
+  const amount = input.value.trim();
+
+  if (!amount) {
+    alert("❌ Avval summani kiriting!");
+    return;
+  }
+
+  alert(
+    "💳 To‘lov usuli: " + method +
+    "\n💰 Summa: " + amount + " so‘m"
+  );
   }
 function copyMyCard() {
 
