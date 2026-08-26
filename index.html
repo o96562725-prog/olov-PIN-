@@ -762,6 +762,41 @@ function freeFirePac(name, price) {
 
   return `
     <button
+      onclick="selectFreeFirePackage('${name}', '${price}')"
+      style="
+        width:100%;
+        min-height:130px;
+        padding:15px;
+        background:#11182a;
+        border:1px solid #29344d;
+        border-radius:18px;
+        color:white;
+        text-align:left;
+      "
+    >
+
+      <div style="
+        font-size:17px;
+        font-weight:bold;
+        margin-bottom:10px;
+      ">
+        💎 ${name}
+      </div>
+
+      <div style="
+        color:#7cff19;
+        font-size:19px;
+        font-weight:bold;
+      ">
+        ${price} so‘m
+      </div>
+
+    </button>
+  `;
+  }
+
+  return `
+    <button
       onclick="selectFreeFirePac('${name}', '${price}')"
       style="
         width:100%;
@@ -795,6 +830,77 @@ function freeFirePac(name, price) {
   `;
 }
 
+function freeFirePackage(name, price) {
+
+  return `
+    <button
+      onclick="selectFreeFirePackage('${name}', '${price}')"
+      style="
+        width:100%;
+        min-height:130px;
+        padding:15px;
+        background:#11182a;
+        border:1px solid #29344d;
+        border-radius:18px;
+        color:white;
+        text-align:left;
+      "
+    >
+      <div style="
+        font-size:17px;
+        font-weight:bold;
+        margin-bottom:10px;
+      ">
+        💎 ${name}
+      </div>
+
+      <div style="
+        color:#7cff19;
+        font-size:19px;
+        font-weight:bold;
+      ">
+        ${price} so‘m
+      </div>
+    </button>
+  `;
+}
+
+
+function freeFirePac(name, price) {
+
+  return `
+    <button
+      onclick="selectFreeFirePac('${name}', '${price}')"
+      style="
+        width:100%;
+        min-height:130px;
+        padding:15px;
+        background:#11182a;
+        border:1px solid #29344d;
+        border-radius:18px;
+        color:white;
+        text-align:left;
+      "
+    >
+      <div style="
+        font-size:17px;
+        font-weight:bold;
+        margin-bottom:10px;
+      ">
+        📦 ${name}
+      </div>
+
+      <div style="
+        color:#7cff19;
+        font-size:19px;
+        font-weight:bold;
+      ">
+        ${price} so‘m
+      </div>
+    </button>
+  `;
+}
+
 
 function selectFreeFirePac(name, price) {
 
@@ -803,7 +909,6 @@ function selectFreeFirePac(name, price) {
     "📦 Paket: " + name +
     "\n💰 Narx: " + price + " so‘m"
   );
-
 }
 
 
@@ -814,33 +919,29 @@ function selectFreeFirePackage(name, price) {
     "💎 Paket: " + name +
     "\n💰 Narx: " + price + " so‘m"
   );
-
 }
 
-  function orders() {
+
+function orders() {
   alert("🎟 Buyurtmalar / Promokodlar");
 }
+
 
 function support() {
   alert("🎧 Yordam");
 }
 
+
 function game(name) {
   alert("🎮 " + name);
 }
+
 
 function profile() {
   alert("👤 Profil");
 }
 
-  window.onerror = function(message, source, line, column) {
-  alert(
-    "❌ JavaScript xatosi:\n\n" +
-    message +
-    "\n\nQator: " + line
-  );
-};
-  
+
 </script>
 
 
