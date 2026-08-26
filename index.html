@@ -832,6 +832,14 @@ function game(name) {
 function profile() {
   alert("👤 Profil");
 }
+
+  window.onerror = function(message, source, line, column) {
+  alert(
+    "❌ JavaScript xatosi:\n\n" +
+    message +
+    "\n\nQator: " + line
+  );
+};
   
 </script>
 
