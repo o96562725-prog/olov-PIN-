@@ -624,13 +624,16 @@ window.openPUBG = function() {
             💎 Diamonds
           </button>
 
-          <button style="
-            flex:1;
-            padding:16px;
-            border-radius:18px;
-            font-size:16px;
-          ">
-            📦 Pacs
+         <button
+  onclick="openFreeFirePacs()"
+  style="
+    flex:1;
+    padding:16px;
+    border-radius:18px;
+    font-size:16px;
+  "
+>
+  📦 Pacs
           </button>
 
         </div>
@@ -666,32 +669,124 @@ window.openPUBG = function() {
 }
 
 
-function freeFirePackage(name, price) {
+function openFreeFirePacs() {
+
+  const oldModal = document.getElementById("freeFirePacsModal");
+  if (oldModal) oldModal.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "freeFirePacsModal";
+
+  modal.innerHTML = `
+    <div style="
+      position:fixed;
+      inset:0;
+      background:#080b18;
+      z-index:10000;
+      overflow-y:auto;
+      padding-bottom:30px;
+    ">
+
+      <div style="
+        padding:20px;
+        display:flex;
+        align-items:center;
+        gap:15px;
+        background:#10172a;
+        border-bottom:1px solid #29344d;
+      ">
+
+        <button
+          onclick="document.getElementById('freeFirePacsModal').remove()"
+          style="
+            width:45px;
+            height:45px;
+            border:none;
+            border-radius:14px;
+            background:#182235;
+            color:white;
+            font-size:28px;
+          "
+        >
+          ‹
+        </button>
+
+        <div style="
+          font-size:22px;
+          font-weight:bold;
+          color:white;
+        ">
+          📦 Free Fire (CIS)
+        </div>
+
+      </div>
+
+      <div style="padding:20px 15px;">
+
+        <div style="
+          font-size:22px;
+          font-weight:bold;
+          color:white;
+          margin-bottom:15px;
+        ">
+          Paketni tanlang
+        </div>
+
+        <div style="
+          display:grid;
+          grid-template-columns:repeat(2,1fr);
+          gap:12px;
+        ">
+
+          ${freeFirePac("Level Up Pass", "3 900")}
+          ${freeFirePac("Level Up Pass", "6 700")}
+          ${freeFirePac("Level Up Pass", "6 700")}
+          ${freeFirePac("Level Up Pass", "6 700")}
+          ${freeFirePac("Level Up Pass", "6 700")}
+          ${freeFirePac("Level Up Pass", "9 800")}
+          ${freeFirePac("Weekly Lite", "4 900")}
+          ${freeFirePac("Weekly Membership", "19 800")}
+          ${freeFirePac("Monthly Membership", "72 500")}
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+
+function freeFirePac(name, price) {
 
   return `
     <button
-      onclick="selectFreeFirePackage('${name}','${price}')"
+      onclick="selectFreeFirePac('${name}', '${price}')"
       style="
-        padding:18px 10px;
-        min-height:120px;
+        width:100%;
+        min-height:130px;
+        padding:15px;
         background:#11182a;
         border:1px solid #29344d;
         border-radius:18px;
-        text-align:center;
+        color:white;
+        text-align:left;
       "
     >
 
       <div style="
-        font-size:18px;
+        font-size:17px;
         font-weight:bold;
-        margin-bottom:12px;
+        margin-bottom:10px;
       ">
-        💎 ${name}
+        📦 ${name}
       </div>
 
       <div style="
         color:#7cff19;
-        font-size:18px;
+        font-size:19px;
         font-weight:bold;
       ">
         ${price} so‘m
@@ -699,6 +794,17 @@ function freeFirePackage(name, price) {
 
     </button>
   `;
+}
+
+
+function selectFreeFirePac(name, price) {
+
+  alert(
+    "🔥 Free Fire\n\n" +
+    "📦 Paket: " + name +
+    "\n💰 Narx: " + price + " so‘m"
+  );
+
 }
 
 
@@ -711,8 +817,9 @@ function selectFreeFirePackage(name, price) {
   );
 
 }
-  
+
 </script>
+
 
 </body>
 </html>
