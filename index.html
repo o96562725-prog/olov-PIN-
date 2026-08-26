@@ -546,10 +546,174 @@ function closePaymentModal() {
     return;
   }
 
-  alert(
-    "💳 To‘lov usuli: " + method +
-    "\n💰 Summa: " + amount + " so‘m"
-  );
+  const formattedAmount = Number(amount).toLocaleString("uz-UZ");
+
+  const oldModal = document.getElementById("amountModal");
+  if (oldModal) oldModal.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "cardPaymentModal";
+
+  modal.innerHTML = `
+    <div style="
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.78);
+      z-index:10001;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    ">
+
+      <div style="
+        width:100%;
+        max-width:400px;
+        background:#11182a;
+        border:1px solid #29344d;
+        border-radius:24px;
+        padding:22px;
+        box-sizing:border-box;
+      ">
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          margin-bottom:20px;
+        ">
+
+          <div style="
+            font-size:21px;
+            font-weight:bold;
+          ">
+            💳 To‘lov
+          </div>
+
+          <button
+            onclick="document.getElementById('cardPaymentModal').remove()"
+            style="
+              width:40px;
+              height:40px;
+              padding:0;
+              border:none;
+              border-radius:12px;
+              font-size:20px;
+              background:#182235;
+              color:white;
+            "
+          >
+            ✕
+          </button>
+
+        </div>
+
+        <div style="
+          color:#9aa8b8;
+          font-size:14px;
+          margin-bottom:8px;
+        ">
+          To‘lov usuli
+        </div>
+
+        <div style="
+          background:#182235;
+          border:1px solid #29344d;
+          border-radius:14px;
+          padding:15px;
+          margin-bottom:15px;
+          color:white;
+          font-size:17px;
+          font-weight:bold;
+        ">
+          💳 ${method}
+        </div>
+
+        <div style="
+          color:#9aa8b8;
+          font-size:14px;
+          margin-bottom:8px;
+        ">
+          💰 To‘lov summasi
+        </div>
+
+        <div style="
+          background:#182235;
+          border:1px solid #29344d;
+          border-radius:14px;
+          padding:15px;
+          margin-bottom:20px;
+          color:#7cff19;
+          font-size:20px;
+          font-weight:bold;
+        ">
+          ${formattedAmount} so‘m
+        </div>
+
+        <div style="
+          color:#9aa8b8;
+          font-size:14px;
+          margin-bottom:8px;
+        ">
+          💳 To‘lov uchun karta
+        </div>
+
+        <div style="
+          background:#182235;
+          border:1px solid #29344d;
+          border-radius:18px;
+          padding:18px;
+          margin-bottom:20px;
+        ">
+
+          <div style="
+            font-size:20px;
+            font-weight:bold;
+            letter-spacing:1px;
+            margin-bottom:12px;
+          ">
+            8600 **** **** 1234
+          </div>
+
+          <div style="
+            color:#9aa8b8;
+            font-size:13px;
+            margin-bottom:4px;
+          ">
+            Karta egasi
+          </div>
+
+          <div style="
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+          ">
+            ISM FAMILIYA
+          </div>
+
+        </div>
+
+        <button
+          onclick="alert('💳 ${formattedAmount} so‘m to‘lov uchun ko‘rsatilgan karta orqali to‘lov qiling.')"
+          style="
+            width:100%;
+            padding:16px;
+            border:none;
+            border-radius:14px;
+            background:#7cff19;
+            color:#000;
+            font-size:17px;
+            font-weight:bold;
+          "
+        >
+          💳 To‘lov qilish
+        </button>
+
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
   }
 
 window.openPUBG = function() {
