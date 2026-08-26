@@ -762,7 +762,7 @@ function freeFirePac(name, price) {
 
   return `
     <button
-      onclick="selectFreeFirePac('${name}', '${price}')"
+      onclick="selectFreeFirePackage('${name}', '${price}')"
       style="
         width:100%;
         min-height:130px;
@@ -833,22 +833,25 @@ function freeFirePackage(name, price) {
   `;
 }
 
-  function selectFreeFirePac(name, price) {
+  function selectFreeFirePackage(name, price) {
+
+  const id = prompt("🆔 Free Fire ID kiriting:");
+
+  if (id === null) return;
+
+  if (!/^\d+$/.test(id)) {
+    alert("❌ ID faqat raqamlardan iborat bo‘lishi kerak!");
+    return;
+  }
+
   alert(
-    "🔥 Free Fire\n\n" +
-    "📦 Paket: " + name +
+    "✅ Qabul qilindi!\n\n" +
+    "🆔 ID: " + id +
+    "\n💎 Paket: " + name +
     "\n💰 Narx: " + price + " so‘m"
   );
-}
-
-function selectFreeFirePackage(name, price) {
-  alert(
-    "🔥 Free Fire\n\n" +
-    "💎 Paket: " + name +
-    "\n💰 Narx: " + price + " so‘m"
-  );
-}
-
+          }
+ 
 function orders() {
   alert("🎟 Buyurtmalar / Promokodlar");
 }
