@@ -1019,13 +1019,43 @@ function freeFirePackage(name, price) {
     return;
   }
 
-  alert(
-    "✅ Qabul qilindi!\n\n" +
-    "🆔 ID: " + id +
-    "\n💎 Paket: " + name +
-    "\n💰 Narx: " + price + " so‘m"
+  const priceNumber = Number(
+    String(price).replace(/\s/g, "").replace(/[^\d]/g, "")
   );
-          }
+
+  const tg = window.Telegram?.WebApp;
+  const user = tg?.initDataUnsafe?.user;
+
+  if (!user) {
+    alert("❌ Telegram ma’lumotlari topilmadi!");
+    return;
+  }
+
+  const balanceKey = "balance_" + user.id;
+  const balance = Number(localStorage.getItem(balanceKey) || 0);
+
+  if (balance < priceNumber) {
+    alert(
+      "❌ Hisobingizda mablag‘ yetarli emas!\n\n" +
+      "💰 Balansingiz: " + balance.toLocaleString("uz-UZ") + " so‘m\n" +
+      "💵 Narx: " + priceNumber.toLocaleString("uz-UZ") + " so‘m"
+    );
+    return;
+  }
+
+  const newBalance = balance - priceNumber;
+
+  localStorage.setItem(balanceKey, newBalance);
+
+  alert(
+    "✅ Buyurtmangiz qabul qilindi!\n\n" +
+    "🆔 ID: " + id + "\n" +
+    "💎 Paket: " + name + "\n" +
+    "💰 Narx: " + priceNumber.toLocaleString("uz-UZ") + " so‘m\n\n" +
+    "💳 Qolgan balans: " +
+    newBalance.toLocaleString("uz-UZ") + " so‘m"
+  );
+    }
  
 function orders() {
   alert("🎟 Buyurtmalar / Promokodlar");
