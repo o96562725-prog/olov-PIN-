@@ -728,8 +728,295 @@ function closePaymentModal() {
   }
 
 window.openPUBG = function() {
-  alert("🎮 PUBG Mobile");
+
+  const oldModal = document.getElementById("pubgModal");
+  if (oldModal) oldModal.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "pubgModal";
+
+  modal.innerHTML = `
+    <div style="
+      position:fixed;
+      inset:0;
+      background:#080b18;
+      z-index:10000;
+      overflow-y:auto;
+      padding-bottom:100px;
+    ">
+
+      <!-- HEADER -->
+      <div style="
+        padding:20px 15px;
+        display:flex;
+        align-items:center;
+        gap:15px;
+        background:#080b18;
+        position:sticky;
+        top:0;
+        z-index:10;
+      ">
+
+        <button
+          onclick="document.getElementById('pubgModal').remove()"
+          style="
+            width:48px;
+            height:48px;
+            padding:0;
+            border:none;
+            border-radius:16px;
+            background:#11182a;
+            color:white;
+            font-size:30px;
+          "
+        >
+          ‹
+        </button>
+
+        <div style="
+          font-size:21px;
+          font-weight:bold;
+        ">
+          PUBG Mobile
+        </div>
+
+      </div>
+
+
+      <!-- PUBG BANNER -->
+      <div style="
+        width:100%;
+        height:220px;
+        position:relative;
+        overflow:hidden;
+        background:
+          linear-gradient(
+            to bottom,
+            rgba(0,0,0,0) 20%,
+            #080b18 100%
+          ),
+          url('https://i.ibb.co/6cVxZV7/pubg-mobile.jpg');
+        background-size:cover;
+        background-position:center;
+      ">
+
+        <div style="
+          position:absolute;
+          left:30px;
+          right:20px;
+          bottom:20px;
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+        ">
+
+          <div style="
+            font-size:32px;
+            font-weight:bold;
+            text-shadow:0 3px 8px #000;
+          ">
+            PUBG Mobile (Auto)
+          </div>
+
+          <div style="
+            background:#11182a;
+            border:1px solid #29344d;
+            border-radius:20px;
+            padding:10px 14px;
+            color:#aeb3c7;
+            font-weight:bold;
+            white-space:nowrap;
+          ">
+            ⭐ 5 · 531
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- TABS -->
+      <div style="
+        display:flex;
+        gap:10px;
+        padding:20px 15px 15px;
+      ">
+
+        <button
+          style="
+            flex:0 0 auto;
+            background:#8b4dff;
+            border:none;
+            border-radius:18px;
+            padding:15px 25px;
+            font-size:17px;
+            font-weight:bold;
+          "
+        >
+          🟡 UC
+        </button>
+
+        <button
+          style="
+            flex:0 0 auto;
+            background:#11182a;
+            border:1px solid #29344d;
+            border-radius:18px;
+            padding:15px 25px;
+            font-size:17px;
+            font-weight:bold;
+          "
+          onclick="alert('🎁 Prime hozircha mavjud emas')"
+        >
+          🎁 Prime
+        </button>
+
+      </div>
+
+
+      <!-- TITLE -->
+      <div style="
+        padding:0 15px 15px;
+        font-size:22px;
+        font-weight:bold;
+      ">
+        Paketni tanlang
+      </div>
+
+
+      <!-- UC PACKAGES -->
+      <div style="
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:12px;
+        padding:0 15px;
+      ">
+
+        ${pubgPackage("60 UC", "11 700")}
+        ${pubgPackage("325 UC", "59 000")}
+        ${pubgPackage("660 UC", "115 000")}
+        ${pubgPackage("1800 UC", "290 000")}
+        ${pubgPackage("3850 UC", "575 000")}
+        ${pubgPackage("8100 UC", "1 165 000")}
+
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
 };
+
+
+/* PUBG UC KARTOCHKASI */
+
+function pubgPackage(name, price) {
+
+  return `
+    <button
+      onclick="selectPUBGPackage('${name}', '${price}')"
+      style="
+        width:100%;
+        min-height:128px;
+        padding:15px;
+        background:#11182a;
+        border:1px solid #29344d;
+        border-radius:20px;
+        color:white;
+        text-align:left;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:8px;
+      "
+    >
+
+      <div style="
+        font-size:20px;
+        font-weight:bold;
+      ">
+        🪙 ${name}
+      </div>
+
+      <div style="
+        color:#7cff19;
+        font-size:18px;
+        font-weight:bold;
+      ">
+        ${price} so‘m
+      </div>
+
+    </button>
+  `;
+}
+
+
+/* PUBG PAKET TANLANGANDA */
+
+function selectPUBGPackage(name, price) {
+
+  const id = prompt("🆔 PUBG Player ID kiriting:");
+
+  if (id === null) return;
+
+  if (!/^\d+$/.test(id)) {
+    alert("❌ ID faqat raqamlardan iborat bo‘lishi kerak!");
+    return;
+  }
+
+  const priceNumber = Number(
+    String(price).replace(/\s/g, "").replace(/[^\d]/g, "")
+  );
+
+  const tg = window.Telegram?.WebApp;
+  const user = tg?.initDataUnsafe?.user;
+
+  if (!user) {
+    alert("❌ Telegram ma’lumotlari topilmadi!");
+    return;
+  }
+
+  const balanceKey = "balance_" + user.id;
+  const balance = Number(
+    localStorage.getItem(balanceKey) || 0
+  );
+
+  if (balance < priceNumber) {
+
+    alert(
+      "❌ Hisobingizda mablag‘ yetarli emas!\n\n" +
+      "💰 Balansingiz: " +
+      balance.toLocaleString("uz-UZ") +
+      " so‘m\n" +
+      "💵 Narx: " +
+      priceNumber.toLocaleString("uz-UZ") +
+      " so‘m"
+    );
+
+    return;
+  }
+
+  const newBalance = balance - priceNumber;
+
+  localStorage.setItem(
+    balanceKey,
+    newBalance
+  );
+
+  alert(
+    "✅ Buyurtmangiz qabul qilindi!\n\n" +
+    "🎮 PUBG Mobile\n" +
+    "🆔 ID: " + id + "\n" +
+    "🪙 Paket: " + name + "\n" +
+    "💰 Narx: " +
+    priceNumber.toLocaleString("uz-UZ") +
+    " so‘m\n\n" +
+    "💳 Qolgan balans: " +
+    newBalance.toLocaleString("uz-UZ") +
+    " so‘m"
+  );
+
+  }
   
   function openFreeFire() {
 
