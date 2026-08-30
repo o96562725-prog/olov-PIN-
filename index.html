@@ -908,9 +908,16 @@ window.openPUBG = function() {
 };
 
 
-/* PUBG UC KARTOCHKASI */
-
 function pubgPackage(name, price) {
+
+  const images = {
+    "60 UC": "pubg_60.png",
+    "325 UC": "pubg_325.png",
+    "660 UC": "pubg_660.png",
+    "1800 UC": "pubg_1800.png",
+    "3850 UC": "pubg_3850.png",
+    "8100 UC": "pubg_8100.png"
+  };
 
   return `
     <button
@@ -918,32 +925,52 @@ function pubgPackage(name, price) {
       style="
         width:100%;
         min-height:128px;
-        padding:15px;
+        padding:10px;
         background:#11182a;
         border:1px solid #29344d;
         border-radius:20px;
         color:white;
         text-align:left;
         display:flex;
-        flex-direction:column;
-        justify-content:center;
-        gap:8px;
+        align-items:center;
+        gap:10px;
+        overflow:hidden;
       "
     >
 
-      <div style="
-        font-size:20px;
-        font-weight:bold;
-      ">
-        🪙 ${name}
-      </div>
+      <img
+        src="${images[name]}"
+        alt="${name}"
+        style="
+          width:105px;
+          height:90px;
+          object-fit:contain;
+          flex-shrink:0;
+        "
+      >
 
       <div style="
-        color:#7cff19;
-        font-size:18px;
-        font-weight:bold;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:7px;
       ">
-        ${price} so‘m
+
+        <div style="
+          font-size:20px;
+          font-weight:bold;
+        ">
+          ${name}
+        </div>
+
+        <div style="
+          color:#7cff19;
+          font-size:17px;
+          font-weight:bold;
+        ">
+          ${price} so‘m
+        </div>
+
       </div>
 
     </button>
