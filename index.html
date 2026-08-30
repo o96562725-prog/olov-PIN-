@@ -168,7 +168,13 @@
     <button onclick="window.Telegram.WebApp.openTelegramLink('https://t.me/zefrix_admiral')">
   🎧 Yordam
     </button>
+
+        <button onclick="openStars()">
+      ⭐ Stars
+        </button>
   </div>
+
+     
 
   <div class="title">
     Ommabop o‘yinlar
@@ -1386,6 +1392,154 @@ function game(name) {
 function profile() {
   alert("👤 Profil");
 }
+  function openStars() {
+
+  const oldModal = document.getElementById("starsModal");
+  if (oldModal) oldModal.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "starsModal";
+
+  const packages = [
+    ["50 ⭐", "9 600"],
+    ["100 ⭐", "19 200"],
+    ["150 ⭐", "28 800"],
+    ["200 ⭐", "38 400"],
+    ["500 ⭐", "96 000"],
+    ["1 000 ⭐", "192 000"],
+    ["2 500 ⭐", "480 000"],
+    ["5 000 ⭐", "960 000"]
+  ];
+
+  modal.innerHTML = `
+    <div style="
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.82);
+      z-index:10000;
+      overflow-y:auto;
+      padding:20px 15px 40px;
+    ">
+
+      <div style="
+        max-width:430px;
+        margin:20px auto;
+        background:#11182a;
+        border:1px solid #29344d;
+        border-radius:26px;
+        padding:22px;
+      ">
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          margin-bottom:10px;
+        ">
+
+          <div style="
+            font-size:24px;
+            font-weight:bold;
+          ">
+            ⭐ Telegram Stars
+          </div>
+
+          <button
+            onclick="document.getElementById('starsModal').remove()"
+            style="
+              width:42px;
+              height:42px;
+              padding:0;
+              border-radius:13px;
+              font-size:20px;
+            "
+          >
+            ✕
+          </button>
+
+        </div>
+
+        <div style="
+          color:#9aa8b8;
+          font-size:14px;
+          margin-bottom:20px;
+        ">
+          ⭐ Paketni tanlang
+        </div>
+
+        <div style="
+          display:flex;
+          flex-direction:column;
+          gap:10px;
+        ">
+
+          ${packages.map(p => `
+            <button
+              onclick="selectStarsPackage('${p[0]}', '${p[1]}')"
+              style="
+                width:100%;
+                min-height:68px;
+                padding:14px 16px;
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                background:#182235;
+                border:1px solid #29344d;
+                border-radius:18px;
+                color:white;
+                text-align:left;
+              "
+            >
+
+              <div>
+                <div style="
+                  font-size:18px;
+                  font-weight:bold;
+                ">
+                  ${p[0]}
+                </div>
+
+                <div style="
+                  margin-top:5px;
+                  color:#9aa8b8;
+                  font-size:13px;
+                ">
+                  Telegram Stars
+                </div>
+              </div>
+
+              <div style="
+                color:#7cff19;
+                font-size:17px;
+                font-weight:bold;
+                white-space:nowrap;
+              ">
+                ${p[1]} so‘m
+              </div>
+
+            </button>
+          `).join("")}
+
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+
+function selectStarsPackage(stars, price) {
+
+  const oldModal = document.getElementById("starsModal");
+  if (oldModal) oldModal.remove();
+
+  alert(
+    "⭐ " + stars + "\n\n" +
+    "💰 Narxi: " + price + " so‘m"
+  );
+            }
 
 </script>
 
